@@ -1,0 +1,53 @@
+= AdocWiki
+:toc: left
+
+An AsciiDoc[tor]-powered wiki of sorts.
+
+== Local Development
+
+=== Dependencies
+
+Install the dependencies:
+
+[,shell-session]
+----
+$ cd ./adocwiki
+$ gem install bundler
+$ bundle install
+$ cd ../
+$ ruby ./adocwiki/main
+----
+
+=== Local Webserver
+
+Then run some webserver in the `./build/` directory.
+Python3 has a nice quicky and easy http module:
+
+[,shell-session]
+----
+$ python3 -m http.server -b localhost 3001
+Serving HTTP on ::1 port 3001 (http://[::1]:3001/) ...
+----
+
+Then, open the browser at link:http://localhost:3001/[localhost:3001].
+
+=== Unit Tests
+
+[source,shell-session]
+----
+$ bundle exec rspec --format=documentation ./some_module.spec.rb
+----
+
+Or the short options:
+
+[source,shell-session]
+----
+$ bundle exec rspec -f d ./some_module.spec.rb
+----
+
+Or for all spec files:
+
+[source,shell-session]
+----
+$ bundle exec rspec -f d ./*.spec.rb
+----
