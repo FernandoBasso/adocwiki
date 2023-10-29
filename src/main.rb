@@ -1,13 +1,23 @@
 # rubocop:disable all
 
+#
+# Bootstraps the build process.
+#
+# Needs the path to the root dir which includes the adocwiki.yml
+# configuration file.
+#
+
 require 'yaml'
 require 'fileutils'
 require 'asciidoctor'
 require 'erb'
 
 class AdocWiki
-  def initialize(nav_file_path)
-    @nav_items = YAML.load_file(nav_file_path)
+  def initialize(dir_root)
+    @dir_root = dir_root
+    @nav_items = YAML.load_file("#{@dir_root}/nav.yml")
+    p @nav_items
+    p "dir_root: #{dir_root}"
   end
 
   def build
@@ -21,7 +31,7 @@ class AdocWiki
   # Returns the templates path.
   #
   def templates_path
-    "#{__dir__}/templates"
+    "#{@dir_root}/templates"
   end
 
   ##
@@ -35,7 +45,7 @@ class AdocWiki
   # @param type {String} One of `article` or `post`.
   #
   def template_for(type)
-    path = "#{templates_path}/#{type}.html.erb"
+    path = "#{__dir__}/templates/#{type}.html.erb"
 
     return path if File.exist?(path)
 
@@ -113,12 +123,20 @@ class AdocWiki
   def copy_styles
     FileUtils.cp_r(
       "#{__dir__}/_static",
-      "#{__dir__}/../build/",
+      "#{@dir_root}/build/",
       noop: false,
       verbose: false,
     )
   end
 end
 
-adoc = AdocWiki.new('./nav.yml')
+dir_root = ARGV.first
+
+if dir_root.nil?
+  raise 'No path to the root dir of the wiki was provided.'
+end
+
+p "dir_root: #{dir_root}" if ENV['DEBUG']
+
+adoc = AdocWiki.new(dir_root)
 adoc.build
