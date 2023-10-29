@@ -18,5 +18,4 @@ describe Doc do
 
     expect(doc.path_base).to eq('./my/notes')
   end
-
 end
