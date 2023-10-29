@@ -64,9 +64,6 @@ class AdocWiki
     #
     html_page = rhtml.result(binding)
 
-    puts "FILE: build/#{file.dirname.to_path}/#{file.basename.to_path}"
-    puts "FILE: build/#{file.dirname.to_path}/#{file.basename.to_path.gsub(/adoc$/, 'html')}"
-
     File.write(
       "build/#{file.dirname.to_path}/#{file.basename.to_path.gsub(/adoc$/, 'html')}",
       html_page
@@ -78,16 +75,10 @@ class AdocWiki
       p 'obj is hash' if ENV['DEBUG']
 
       nav_items.each_pair do |key, _val|
-        if nav_items[key].instance_of?(Array)
-          p 'nav_items[key] is array' if ENV['DEBUG']
-          do_level(nav_items[key])
-        else
-          p 'nav_items[key] is NOT array' if ENV['DEBUG']
-          do_level(nav_items[key])
-        end
+        do_level(nav_items[key])
       end
     elsif nav_items.instance_of?(Array)
-      puts 'obj is array' if ENV['debug']
+      p 'obj is array' if ENV['debug']
 
       nav_items.each do |item|
         if item.instance_of?(Array)
@@ -96,8 +87,6 @@ class AdocWiki
           conv(item)
         end
       end
-    else
-      puts 'what‽'
     end
   end
 
