@@ -1,7 +1,8 @@
 require 'yaml'
 require 'fileutils'
-require 'asciidoctor'
+require 'pathname'
 require 'erb'
+require 'asciidoctor'
 
 ##
 # The `AdocWiki` class is responsible for running the steps necessary
@@ -52,40 +53,24 @@ class AdocWiki
   # @param {string} adoc_file
   #
   def conv(adoc_file)
-    rhtml = ERB.new(File.read(template_for('article'), mode: 'r:utf-8'))
-
-    arr = adoc_file.split('/')
-
-    ##
-    # Drop filename and retain only the directory components.
-    #
-    dirs = arr[0 .. -2]
-
-    ##
-    # Prepend ‘build’ to the path.
-    #
-    dirs.insert(0, 'build')
-
-    ##
-    # Get the basename (filename without preceending dirs) only.
-    #
-    outname = arr[-1]
-
-    FileUtils.mkpath(dirs.join('/'))
-
     adoc = Asciidoctor.load_file(adoc_file)
+    rhtml = ERB.new(File.read(template_for('article'), mode: 'r:utf-8'))
+    file = Pathname.new(adoc_file)
+
+    FileUtils.mkpath("build/#{file.dirname.to_path}")
 
     ##
     # `adoc` variable will be available inside the template as `adoc`
     #
     html_page = rhtml.result(binding)
 
-    File.write(
-      "#{dirs.join('/')}/#{outname.gsub(/adoc$/, 'html')}",
-      html_page,
-    )
+    puts "FILE: build/#{file.dirname.to_path}/#{file.basename.to_path}"
+    puts "FILE: build/#{file.dirname.to_path}/#{file.basename.to_path.gsub(/adoc$/, 'html')}"
 
-    p adoc.attributes['stem'] if ENV['DEBUG']
+    File.write(
+      "build/#{file.dirname.to_path}/#{file.basename.to_path.gsub(/adoc$/, 'html')}",
+      html_page
+    )
   end
 
   def do_level(nav_items = @nav_items)
