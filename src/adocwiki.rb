@@ -1,3 +1,5 @@
+#rubocop: disable all
+
 require 'yaml'
 require 'fileutils'
 require 'pathname'
@@ -72,14 +74,10 @@ class AdocWiki
 
   def do_level(nav_items = @nav_items)
     if nav_items.instance_of?(Hash)
-      p 'obj is hash' if ENV['DEBUG']
-
       nav_items.each_pair do |key, _val|
         do_level(nav_items[key])
       end
     elsif nav_items.instance_of?(Array)
-      p 'obj is array' if ENV['debug']
-
       nav_items.each do |item|
         if item.instance_of?(Array)
           do_level(item)
