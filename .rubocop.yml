@@ -1,0 +1,48 @@
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+##
+# It looks more or less OK if we do:
+#
+#   x * b**e
+#
+# That is, multiplication and short var names (single char,
+# in this case), but ugly in situations like this (especially
+# because Rubocop enforces 3-or-more-char identifier names):
+#
+#   base**exponent
+#
+# Unacceptably ugly. Sorry, but no... Thanks.
+#
+# • https://rubystyle.guide/#spaces-operators
+# • https://www.rubydoc.info/gems/rubocop/0.10.0/Rubocop/Cop/Style/SpaceAroundOperators
+# • https://docs.rubocop.org/rubocop/cops_layout.html#layoutspacearoundoperators
+#
+Style/SpaceAroundOperators:
+  Enabled: true
+  EnforcedStyleForExponentOperator: space
+
+##
+# I want to allow developers to use their judgement. A method like
+# `pow(base, exponent)`, is OK, but `pow(b, e)` is OK too given the
+# context, doc comments and a good method/function name.
+#
+# • https://github.com/rubocop/rubocop/issues/6761
+# • https://docs.rubocop.org/rubocop/cops_naming.html#namingmethodparametername
+#
+Style/MethodParameterName:
+  Enabled: true
+  MinNameLength: 1
+
+Metrics/MethodLength:
+  Enabled: true
+  Max: 24
+  Exclude: ['keyword_args_2.rb', '**/*.spec.rb']
+
+Metrics/BlockLength:
+  Enabled: true
+  Max: 24
+  Exclude: ['**/*.spec.rb']
+
+Lint/MissingCopEnableDirective:
+  Enabled: false
