@@ -1,12 +1,11 @@
-# rubocop: disable all
 # frozen_string_literal: true
 
 require 'yaml'
 require 'pathname'
 require 'awesome_print'
 
-def _ap(obj)
-  ap obj, indent: 2
+def _ap(acc)
+  ap acc, indent: 2
 end
 
 ##
@@ -20,30 +19,29 @@ class TreeView
   #
   def initialize(items)
     @items = items
-    @nav_items = to_html(items, nil, {})
+    @nav_items = walk(items)
   end
 
-  def to_html(val, key = nil, tree = {})
-    return tree if val.nil?
+  ##
+  # Transforms the input hash into a new hash with extra and modified
+  # properties which is then useful for generating the HTML navigation
+  # structure and converting using the `Asciidoctor` API.
+  #
+  # The output hash uses string keys for main category names and symbols
+  # for each file information.
+  #
+  # @param {Hash|Array|String} val
+  # @return {Hash}
+  #
+  def walk(val)
+    return { path: val.sub('.adoc', '') } if val.is_a?(String)
 
-    if val.is_a?(Hash)
-      val.each_pair do |k, v|
-        return to_html(v, k, tree)
-      end
-    elsif val.is_a?(Array)
-      tree[key] ||= []
-
-      val.each do |file|
-        pathname = Pathname.new(file)
-        tree[key] << { path: pathname.to_path.gsub('.adoc', '') }
-      end
-
-      return tree
+    val.each_with_object({}) do |(k, v), acc|
+      acc[k] = case v
+               when Hash  then walk(v)
+               when Array then [*acc[k], *v.map(&method(:walk))]
+               else            { path: v }
+               end
     end
   end
 end
-
-# h = YAML.load_file("#{__dir__}/test-data/nav.yml")
-# _ap h
-# _ap TreeView.new(h).nav_items
-
