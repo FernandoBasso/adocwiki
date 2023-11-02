@@ -22,6 +22,20 @@ class TreeView
     @nav_items = walk(items)
   end
 
+  private
+
+  ##
+  # Get config hash for file.
+  #
+  # @param {string} file
+  # @return {hash}
+  #
+  def config(file)
+    {
+      path: file.sub(/\.adoc/, '')
+    }
+  end
+
   ##
   # Transforms the input hash into a new hash with extra and modified
   # properties which is then useful for generating the HTML navigation
@@ -34,7 +48,7 @@ class TreeView
   # @return {Hash}
   #
   def walk(val)
-    return { path: val.sub('.adoc', '') } if val.is_a?(String)
+    return config(val) if val.is_a?(String)
 
     val.each_with_object({}) do |(k, v), acc|
       acc[k] = case v
