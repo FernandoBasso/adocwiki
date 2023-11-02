@@ -9,46 +9,8 @@ def _ap(acc)
 end
 
 describe TreeView do
-  it 'single level items' do
-    navitems = <<~NAVITEMS
-      Databases:
-        - dbsql/intro.adoc
-        - dbsql/psql-cli.adoc
-    NAVITEMS
-
-    nav = YAML.safe_load(navitems)
-
-    expect(TreeView.new(nav).nav_items).to eq(
-      {
-        'Databases' => [
-          {
-            path: 'dbsql/intro'
-            # title: 'Intro',
-            # subtitle: nil
-          },
-          {
-            path: 'dbsql/psql-cli'
-            # title: 'psql CLI',
-            # subtitle: nil'
-          }
-        ]
-      }
-    )
-  end
-
-  it 'multi level items' do
-    navitems = <<~NAVITEMS
-      Databases:
-        - dbsql/intro.adoc
-        - dbsql/psql-cli.adoc
-      Editors:
-        Vim:
-          - editors/vim/getting-started.adoc
-        Emacs:
-          - editors/emacs/everyday-tips.adoc
-    NAVITEMS
-
-    nav = YAML.safe_load(navitems)
+  it 'can work with multi-level items' do
+    nav = YAML.load_file("#{__dir__}/../test-data/nav.yml")
 
     expect(TreeView.new(nav).nav_items).to eq(
       {
@@ -70,14 +32,27 @@ describe TreeView do
               path: 'editors/vim/getting-started'
               # title: 'Getting Started',
               # subtitle: nil
+            },
+            {
+              path: 'editors/vim/coc'
+              # title: 'Getting Started',
+              # subtitle: nil
             }
           ],
           'Emacs' => [
             {
-              path: 'editors/emacs/everyday-tips'
+              path: 'editors/emacs/intro'
             }
           ]
-        }
+        },
+        'Miscellanous' => [
+          {
+            path: 'misc/archlinux'
+          },
+          {
+            path: 'misc/asciidoc'
+          }
+        ]
       }
     )
   end

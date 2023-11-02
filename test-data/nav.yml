@@ -1,0 +1,12 @@
+Databases:
+  - dbsql/intro.adoc
+  - dbsql/psql-cli.adoc
+Editors:
+  Vim:
+    - editors/vim/getting-started.adoc
+    - editors/vim/coc.adoc
+  Emacs:
+    - editors/emacs/intro.adoc
+Miscellanous:
+  - misc/archlinux.adoc
+  - misc/asciidoc.adoc

@@ -1,0 +1,4 @@
+= Getting Started
+:page-subtitle: Vim Editor
+
+Getting started with vim.
