@@ -51,3 +51,21 @@ Or for all spec files:
 ----
 $ bundle exec rspec -f d ./*.spec.rb
 ----
+
+== Tips
+
+=== List test data titles
+
+Use `find` and `sed` will do:
+
+[source,shell-session]
+----
+$ find test-data -name '*.adoc' -exec sed -n 1p {} \;
+= Intro
+= Getting Started
+= CoC
+= Intro
+= PostgreSQL psql CLI
+= AsciiDoc
+= Arch Linux
+----

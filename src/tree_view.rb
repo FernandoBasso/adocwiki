@@ -2,6 +2,7 @@
 
 require 'yaml'
 require 'pathname'
+require 'asciidoctor'
 require 'awesome_print'
 
 def _ap(acc)
@@ -17,8 +18,9 @@ class TreeView
   ##
   # @param {Hash} items A hash describing the tree hierarchy
   #
-  def initialize(items)
+  def initialize(items, docsdir)
     @items = items
+    @docsdir = docsdir
     @nav_items = walk(items)
   end
 
@@ -31,8 +33,11 @@ class TreeView
   # @return {hash}
   #
   def config(file)
+    adoc = Asciidoctor.load_file("#{@docsdir}/#{file}")
+
     {
-      path: file.sub(/\.adoc/, '')
+      path: file.sub(/\.adoc/, ''),
+      title: adoc.title
     }
   end
 
