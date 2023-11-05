@@ -59,4 +59,10 @@ describe TreeView do
       }
     )
   end
+
+  it 'generates HTML tree structure' do
+    nav = YAML.load_file("#{__dir__}/../test-data/nav.yml")
+
+    puts TreeView.new(nav, "#{__dir__}/../test-data").nav_html
+  end
 end

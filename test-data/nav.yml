@@ -7,6 +7,6 @@ Editors:
     - editors/vim/coc.adoc
   Emacs:
     - editors/emacs/intro.adoc
-Miscellanous:
+Miscellaneous:
   - misc/archlinux.adoc
   - misc/asciidoc.adoc
