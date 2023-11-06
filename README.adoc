@@ -14,8 +14,14 @@ Install the dependencies:
 $ cd ./adocwiki
 $ gem install bundler
 $ bundle install
-$ cd ../
-$ ruby ./adocwiki/main
+----
+
+Then, go to your wiki/docs directory:
+
+[source,shell-session]
+----
+$ cd path/to/docs/with/nav.yml
+$ ruby path/to/adocwiki/src/main.rb $PWD
 ----
 
 === Local Webserver
