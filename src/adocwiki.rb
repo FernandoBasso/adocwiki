@@ -5,6 +5,7 @@ require 'fileutils'
 require 'pathname'
 require 'erb'
 require 'asciidoctor'
+require_relative 'tree_view'
 
 ##
 # The `AdocWiki` class is responsible for running the steps necessary
@@ -15,6 +16,7 @@ class AdocWiki
     @dir_root = dir_root
     @nav_items = YAML.load_file("#{@dir_root}/nav.yml")
     p @nav_items if ENV['debug']
+    @nav_html = TreeView.new(@nav_items, dir_root).nav_html
   end
 
   def build
@@ -55,11 +57,13 @@ class AdocWiki
   # @param {string} adoc_file
   #
   def conv(adoc_file)
-    adoc = Asciidoctor.load_file(adoc_file)
-    rhtml = ERB.new(File.read(template_for('article'), mode: 'r:utf-8'))
+    adoc = Asciidoctor.load_file("#{@dir_root}/#{adoc_file}")
+    rhtml = ERB.new(
+      File.read(template_for('article'), mode: 'r:utf-8')
+    )
     file = Pathname.new(adoc_file)
 
-    FileUtils.mkpath("build/#{file.dirname.to_path}")
+    FileUtils.mkpath("#{@dir_root}/build/#{file.dirname.to_path}")
 
     ##
     # `adoc` variable will be available inside the template as `adoc`
@@ -67,7 +71,7 @@ class AdocWiki
     html_page = rhtml.result(binding)
 
     File.write(
-      "build/#{file.dirname.to_path}/#{file.basename.to_path.gsub(/adoc$/, 'html')}",
+      "#{@dir_root}/build/#{file.dirname.to_path}/#{file.basename.to_path.gsub(/adoc$/, 'html')}",
       html_page
     )
   end

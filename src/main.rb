@@ -6,7 +6,14 @@
 # Needs the path to the root dir which includes the adocwiki.yml
 # configuration file.
 #
-
+# Call this with a command line this:
+#
+#     $ ruby path/to/adocwiki/main.rb path/to/docs
+#
+# Example:
+#
+#     $ ruby ~/projcts/adocwiki/src/main $PWD
+#
 
 dir_root = ARGV.first
 
