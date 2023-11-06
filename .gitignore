@@ -1,0 +1,8 @@
+#
+# .gitignore
+#
+
+##
+# Build directory used for testing purposes.
+#
+test-data/build
