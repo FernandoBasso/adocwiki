@@ -1,0 +1,25 @@
+body {
+  background-color: #fffff4;
+  margin-left: 320px;
+  margin-right: 320px;
+  max-width: 960px;
+}
+
+#toc.toc2 {
+  background-color: #ffffe3;
+}
+
+.outline {
+  position: fixed;
+  width: 320px;
+  right: 0;
+  top: 0;
+}
+
+.literalblock pre,
+.listingblock > .content > pre:not(.highlight),
+.listingblock > .content > pre[class="highlight"],
+.listingblock > .content > pre[class^="highlight "] {
+  background-color: #fffff3;
+  border: 2px dashed #eee;
+}
