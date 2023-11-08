@@ -1,3 +1,7 @@
+Command Line:
+  - cmdline/bash.adoc
+  - sed:
+    - cmdline/sed/the-s-command.adoc
 Databases:
   - dbsql/intro.adoc
   - dbsql/psql-cli.adoc

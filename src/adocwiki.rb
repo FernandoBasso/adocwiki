@@ -79,13 +79,15 @@ class AdocWiki
   end
 
   def do_level(nav_items = @nav_items)
-    if nav_items.instance_of?(Hash)
+    if nav_items.is_a?(Hash)
       nav_items.each_pair do |key, _val|
         do_level(nav_items[key])
       end
-    elsif nav_items.instance_of?(Array)
+    elsif nav_items.is_a?(Array)
       nav_items.each do |item|
-        if item.instance_of?(Array)
+        if item.is_a?(Array)
+          do_level(item)
+        elsif item.is_a?(Hash)
           do_level(item)
         else
           conv(item)

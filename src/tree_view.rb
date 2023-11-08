@@ -78,7 +78,7 @@ class TreeView
   # @return {String} The navigation ul/li tree structure.
   #
   def to_html(val)
-    return "<li>#{val[:path]}</li>" if val.is_a?(Hash) && val[:path]
+    return %(<li><a href="/#{val[:path]}.html">#{val[:title]}</a></li>) if val.is_a?(Hash) && val[:path]
 
     acc = ''
 
@@ -102,11 +102,10 @@ class TreeView
   end
 end
 
-#
-# nav = YAML.load_file("#{__dir__}/../test-data/nav.yml")
-# html = TreeView.new(nav, "#{__dir__}/../test-data").nav_html
-# puts html
-#
+nav = YAML.load_file("#{__dir__}/../test-data/nav.yml")
+items = TreeView.new(nav, "#{__dir__}/../test-data").nav_items
+_ap items
+
 # beautiful = HtmlBeautifier.beautify(html)
 # puts beautiful
 #
