@@ -58,7 +58,7 @@ class AdocWiki
   #
   def conv(adoc_file)
     adoc = Asciidoctor.load_file("#{@dir_root}/#{adoc_file}")
-    outline = (Asciidoctor::Converter.create('html5')).convert_outline(adoc)
+    outline = (Asciidoctor::Converter.create('html5')).convert_outline(adoc, toclevels: 6)
 
     rhtml = ERB.new(
       File.read(template_for('article'), mode: 'r:utf-8')
