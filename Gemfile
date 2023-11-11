@@ -8,4 +8,4 @@ gem 'rspec', group: :development
 gem 'solargraph', group: :development
 
 gem 'asciidoctor'
-
+gem 'pygments.rb'

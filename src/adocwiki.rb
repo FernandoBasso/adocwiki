@@ -57,7 +57,9 @@ class AdocWiki
   # @param {string} adoc_file
   #
   def conv(adoc_file)
-    adoc = Asciidoctor.load_file("#{@dir_root}/#{adoc_file}")
+    adoc = Asciidoctor.load_file("#{@dir_root}/#{adoc_file}", attributes: {
+      'source-highlighter' => 'pygments'
+    })
     outline = (Asciidoctor::Converter.create('html5')).convert_outline(adoc, toclevels: 6)
 
     rhtml = ERB.new(
