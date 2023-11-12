@@ -36,6 +36,7 @@ body {
 }
 
 .literalblock pre,
+.listingblock pre,
 .listingblock > .content > pre:not(.highlight),
 .listingblock > .content > pre[class="highlight"],
 .listingblock > .content > pre[class^="highlight "] {
