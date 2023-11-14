@@ -2,8 +2,12 @@ body {
   background-color: #fffff4;
   margin-left: 320px;
   margin-right: 320px;
-  max-width: 960px;
+  max-width: 800px;
   font-family: "Open Sans", "DejaVu Sans", sans-serif;
+}
+
+#content {
+  margin-top: 0;
 }
 
 #toc.toc2 {
@@ -11,18 +15,20 @@ body {
 }
 
 .outline {
-  position: fixed;
+  position: absolute;
   width: 320px;
   height: 100%;
-  right: 0;
+  right: -320px;
   top: 0;
   padding: 1.25em 1em;
   background-color: #ffffe3;
-  border-left: 1px solid #e7e7e9;
+  border: 1px solid #e7e7e9;
 }
 
 .outline > ul {
   font-size: 0.9em;
+  position: sticky;
+  top: 26px;
 }
 
 .outline ul {
