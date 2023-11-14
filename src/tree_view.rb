@@ -94,7 +94,7 @@ class TreeView
         end
         acc += '</ul></li>'
       else
-        acc[k] = "<li>??? #{k}, #{v}</li>"
+        acc += "<li>??? #{k}, #{v}</li>"
       end
     end
 
@@ -102,9 +102,9 @@ class TreeView
   end
 end
 
-nav = YAML.load_file("#{__dir__}/../test-data/nav.yml")
-items = TreeView.new(nav, "#{__dir__}/../test-data").nav_items
-_ap items
+# nav = YAML.load_file("#{__dir__}/../test-data/nav.yml")
+# items = TreeView.new(nav, "#{__dir__}/../test-data").nav_items
+# _ap items
 
 # beautiful = HtmlBeautifier.beautify(html)
 # puts beautiful
