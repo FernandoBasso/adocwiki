@@ -91,6 +91,7 @@ DEPENDENCIES
   asciidoctor
   awesome_print
   htmlbeautifier
+  nokogiri
   pygments.rb
   rspec
   solargraph

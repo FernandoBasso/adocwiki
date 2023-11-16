@@ -1,4 +1,4 @@
 = The s Command
-:page-subtitle: sed :: Command LIne
+:page-subtitle: sed :: Command Line
 
 Let's learn about the `s` command in sed.

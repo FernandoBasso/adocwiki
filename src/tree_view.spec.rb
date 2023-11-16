@@ -9,6 +9,31 @@ def _ap(acc)
 end
 
 describe TreeView do
+  it 'can generate single category with items' do
+    docsdir = "#{__dir__}/../test-data"
+
+    nav = YAML.load_file("#{docsdir}/nav1.yml")
+
+    tree = TreeView.new(nav, docsdir).nav_items
+
+    expect(tree).to eq(
+      {
+        'Command Line' => [
+          {
+            path: 'cmdline/bash',
+            title: 'bash',
+            subtitle: nil
+          },
+          {
+            path: 'cmdline/parameter-expansion',
+            title: 'Parameter Expansion',
+            subtitle: 'Bash :: Command Line'
+          }
+        ]
+      }
+    )
+  end
+
   it 'can work with multi-level items' do
     nav = YAML.load_file("#{__dir__}/../test-data/nav.yml")
 

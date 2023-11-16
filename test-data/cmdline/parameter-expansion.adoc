@@ -1,0 +1,6 @@
+= Parameter Expansion
+:page-subtitle: Bash :: Command Line
+
+== Intro to Bash's Parameter Expansion
+
+Parameter expansion is a very useful bash feature.

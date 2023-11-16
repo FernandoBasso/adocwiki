@@ -19,6 +19,7 @@ class TreeView
 
   ##
   # @param {Hash} items A hash describing the tree hierarchy
+  # @param {String} docsdir Path to the root dir of the docs
   #
   def initialize(items, docsdir)
     @items = items
@@ -40,7 +41,8 @@ class TreeView
 
     {
       path: file.sub(/\.adoc/, ''),
-      title: adoc.title
+      title: adoc.title,
+      subtitle: adoc.attributes['page-subtitle']
     }
   end
 
