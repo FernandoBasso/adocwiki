@@ -9,11 +9,9 @@ def _ap(acc)
 end
 
 describe TreeView do
-  it 'can generate single category with items' do
+  it 'handles one-level items' do
     docsdir = "#{__dir__}/../test-data"
-
     nav = YAML.load_file("#{docsdir}/nav1.yml")
-
     tree = TreeView.new(nav, docsdir).nav_items
 
     expect(tree).to eq(
@@ -32,62 +30,55 @@ describe TreeView do
         ]
       }
     )
-  end
-
-  it 'can work with multi-level items' do
-    nav = YAML.load_file("#{__dir__}/../test-data/nav.yml")
-
-    expect(TreeView.new(nav, "#{__dir__}/../test-data").nav_items).to eq(
+    expect(tree).to eq(
       {
-        'Databases' => [
+        'Command Line' => [
           {
-            path: 'dbsql/intro',
-            title: 'Intro'
-            # subtitle: nil
+            path: 'cmdline/bash',
+            title: 'bash',
+            subtitle: nil
           },
           {
-            path: 'dbsql/psql-cli',
-            title: 'PostgreSQL psql CLI'
-            # subtitle: nil'
-          }
-        ],
-        'Editors' => {
-          'Vim' => [
-            {
-              path: 'editors/vim/getting-started',
-              title: 'Getting Started'
-              # subtitle: nil
-            },
-            {
-              path: 'editors/vim/coc',
-              title: 'CoC'
-              # subtitle: nil
-            }
-          ],
-          'Emacs' => [
-            {
-              path: 'editors/emacs/intro',
-              title: 'Intro'
-            }
-          ]
-        },
-        'Miscellanous' => [
-          {
-            path: 'misc/archlinux',
-            title: 'Arch Linux'
-          },
-          {
-            path: 'misc/asciidoc',
-            title: 'AsciiDoc'
+            path: 'cmdline/parameter-expansion',
+            title: 'Parameter Expansion',
+            subtitle: 'Bash :: Command Line'
           }
         ]
       }
     )
   end
 
-  it 'generates HTML tree structure' do
-    nav = YAML.load_file("#{__dir__}/../test-data/nav.yml")
+  it 'handles two-level nested items' do
+    docsdir = "#{__dir__}/../test-data"
+    nav = YAML.load_file("#{docsdir}/nav2.yml")
 
-    puts TreeView.new(nav, "#{__dir__}/../test-data").nav_html
+    expect(TreeView.new(nav, docsdir).nav_items).to eq(
+      {
+        'Command Line' => [
+          {
+            path: 'cmdline/bash',
+            title: 'bash',
+            subtitle: nil
+          },
+          {
+            path: 'cmdline/parameter-expansion',
+            title: 'Parameter Expansion',
+            subtitle: 'Bash :: Command Line'
+          },
+          'sed' => [
+            {
+              path: 'cmdline/sed/intro',
+              title: 'Sed Introduction',
+              subtitle: 'sed :: Command Line'
+            },
+            {
+              path: 'cmdline/sed/the-s-command',
+              title: 'The s Command',
+              subtitle: 'sed :: Command Line'
+            }
+          ]
+        ]
+      }
+    )
   end
 end

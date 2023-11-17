@@ -1,0 +1,10 @@
+#
+# A navigation with two-level items nesting.
+#
+
+Command Line:
+  - cmdline/bash.adoc
+  - cmdline/parameter-expansion.adoc
+  - sed:
+    - cmdline/sed/intro.adoc
+    - cmdline/sed/the-s-command.adoc
