@@ -1,4 +1,3 @@
-# rubocop: disable Metrics/AbcSize
 # frozen_string_literal: true
 
 require 'yaml'
@@ -46,10 +45,6 @@ class TreeView
     }
   end
 
-  def make_nav_html(nav_hash)
-    %(<ul class="navtree">#{to_html(nav_hash)}</ul>)
-  end
-
   ##
   # Transforms the input hash into a new hash with extra and modified
   # properties which is then useful for generating the HTML navigation
@@ -72,36 +67,6 @@ class TreeView
                end
     end
   end
-
-  ##
-  # Generates the HTML ul/li nested list structure for the wiki pages.
-  #
-  # @param {Hash|Array} val
-  # @return {String} The navigation ul/li tree structure.
-  #
-  def to_html(val)
-    return %(<li><a href="/#{val[:path]}.html">#{val[:title]}</a></li>) if val.is_a?(Hash) && val[:path]
-
-    acc = ''
-
-    val.each_pair do |k, v|
-      if v.is_a?(Hash)
-        acc += %(<li class="topcategory"><button>#{k}</button><ul>)
-        acc += to_html(v)
-        acc += '</ul></li>'
-      elsif v.is_a?(Array)
-        acc += %(<li class="category"><button>#{k}</button><ul class="items">)
-        v.each do |v|
-          acc += to_html(v)
-        end
-        acc += '</ul></li>'
-      else
-        acc += "<li>??? #{k}, #{v}</li>"
-      end
-    end
-
-    acc
-  end
 end
 
 # nav = YAML.load_file("#{__dir__}/../test-data/nav.yml")
@@ -110,4 +75,3 @@ end
 
 # beautiful = HtmlBeautifier.beautify(html)
 # puts beautiful
-#

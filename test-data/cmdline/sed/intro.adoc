@@ -1,0 +1,14 @@
+= Sed Introduction
+:page-subtitle: sed :: Command Line
+
+== Intro
+
+The name `sed` stands for _stream editor_.
+It can perform operations on _streams_ of data.
+For example, with GNU sed we can do:
+
+[source,shell-session]
+----
+$ printf '%s\n' hello | sed -e 's/./-&/g' -e 's/^-//'
+h-e-l-l-o
+----
