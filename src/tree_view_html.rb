@@ -17,7 +17,7 @@ class TreeViewHtml
   def nav_html
     return @nav_html unless @nav_html.nil?
 
-    %(<ul class="navtree">#{to_html(@items)}</ul)
+    @nav_html = %(<ul class="navtree">#{to_html(@items)}</ul>)
   end
 
   private

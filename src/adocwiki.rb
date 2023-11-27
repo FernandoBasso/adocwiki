@@ -6,6 +6,13 @@ require 'pathname'
 require 'erb'
 require 'asciidoctor'
 require_relative 'tree_view'
+require_relative 'tree_view_html'
+
+require 'awesome_print'
+
+def _ap(acc)
+  ap acc, indent: -2
+end
 
 ##
 # The `AdocWiki` class is responsible for running the steps necessary
@@ -14,13 +21,13 @@ require_relative 'tree_view'
 class AdocWiki
   def initialize(dir_root)
     @dir_root = dir_root
-    @nav_items = YAML.load_file("#{@dir_root}/nav.yml")
-    p @nav_items if ENV['debug']
-    @nav_html = TreeView.new(@nav_items, dir_root).nav_html
+    @nav_items_orig = YAML.load_file("#{@dir_root}/nav.yml")
+    @nav_items = TreeView.new(@nav_items_orig, dir_root).nav_items
+    @nav_html = TreeViewHtml.new(@nav_items).nav_html
   end
 
   def build
-    do_level
+    do_level(@nav_items_orig)
     copy_styles
   end
 
@@ -81,7 +88,7 @@ class AdocWiki
     )
   end
 
-  def do_level(nav_items = @nav_items)
+  def do_level(nav_items = @nav_items_orig)
     if nav_items.is_a?(Hash)
       nav_items.each_pair do |key, _val|
         do_level(nav_items[key])

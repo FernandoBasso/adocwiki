@@ -14,17 +14,28 @@ end
 # Generates the tree view of files in the wiki.
 #
 class TreeView
-  attr_reader :nav_items, :nav_html
+  attr_reader :nav_items
 
   ##
   # @param {Hash} items A hash describing the tree hierarchy
   # @param {String} docsdir Path to the root dir of the docs
   #
-  def initialize(items, docsdir)
+  def initialize(items, docsdir, htmlify: nil)
     @items = items
     @docsdir = docsdir
     @nav_items = walk(items)
-    @nav_html = make_nav_html(@nav_items)
+    @nav_html = nil
+    @htmlify = htmlify
+  end
+
+  def nav_html(items = @nav_items)
+    return @nav_html unless @nav_html.nil?
+
+    raise 'Provide some TreeViewHtml instance' unless @htmlify.is_a?(TreeViewHtml)
+
+    @nav_html = @htmlify.items(items).nav_html
+
+    @nav_html
   end
 
   private
