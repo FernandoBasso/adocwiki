@@ -1,4 +1,4 @@
-= Intro
+= Intro to Emacs
 :page-subtitle: Emacs Editor
 
 Introduction to the Emacs Editor.

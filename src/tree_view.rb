@@ -31,7 +31,7 @@ class TreeView
   def nav_html(items = @nav_items)
     return @nav_html unless @nav_html.nil?
 
-    raise 'Provide some TreeViewHtml instance' unless @htmlify.is_a?(TreeViewHtml)
+    raise 'Provide a TreeViewHtml instance' unless @htmlify.is_a?(TreeViewHtml)
 
     @nav_html = @htmlify.items(items).nav_html
 
