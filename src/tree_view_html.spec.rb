@@ -47,5 +47,45 @@ describe TreeViewHtml do
         links.last.attribute('href').value
       ).to eq('/cmdline/parameter-expansion.html')
     end
+
+    it 'generates two-level navigation structure' do
+      tree = {
+        'Command Line' => [
+          {
+            path: 'cmdline/bash',
+            title: 'bash',
+            subtitle: nil
+          }
+        ],
+        'Editors' => [
+          'Vim' => [
+            {
+              path: 'editors/vim/getting-started',
+              title: 'Getting Started',
+              subtitle: nil
+            }
+          ]
+        ]
+      }
+
+      html = TreeViewHtml.new(tree).nav_html
+      dom = Nokogiri::HTML(html, &:noblanks)
+
+      expect(dom.css('ul.navtree').size).to eq(1)
+      expect(dom.css('ul.navtree > li.category').size).to eq(2)
+      expect(dom.css('ul.navtree > li.category > button').first.text).to eq('Command Line')
+      expect(dom.css('ul.navtree > li.category > button').last.text).to eq('Editors')
+
+      editors = dom.css('ul.navtree > li.category').last
+
+      expect(editors.css('button').first.text).to eq('Editors')
+
+      expect(editors.css('ul.items > li.category > button').text).to eq('Vim')
+      expect(editors.css('ul.items > li.category > ul.items > li > a').text).to eq('Getting Started')
+      expect(
+        editors.css('ul.items > li.category > ul.items > li > a')
+        .attribute('href').value
+      ).to eq('/editors/vim/getting-started.html')
+    end
   end
 end
