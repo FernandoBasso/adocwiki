@@ -73,15 +73,21 @@ describe TreeViewHtml do
 
       expect(dom.css('ul.navtree').size).to eq(1)
       expect(dom.css('ul.navtree > li.category').size).to eq(2)
-      expect(dom.css('ul.navtree > li.category > button').first.text).to eq('Command Line')
-      expect(dom.css('ul.navtree > li.category > button').last.text).to eq('Editors')
+      expect(
+        dom.css('ul.navtree > li.category > a').first.text
+      ).to eq('Command Line')
+      expect(
+        dom.css('ul.navtree > li.category > a').last.text
+      ).to eq('Editors')
 
       editors = dom.css('ul.navtree > li.category').last
 
-      expect(editors.css('button').first.text).to eq('Editors')
+      expect(editors.css('ul.items > li.category > a').text).to eq('Vim')
 
-      expect(editors.css('ul.items > li.category > button').text).to eq('Vim')
-      expect(editors.css('ul.items > li.category > ul.items > li > a').text).to eq('Getting Started')
+      expect(
+        editors.css('ul.items > li.category > ul.items > li > a').text
+      ).to eq('Getting Started')
+
       expect(
         editors.css('ul.items > li.category > ul.items > li > a')
         .attribute('href').value

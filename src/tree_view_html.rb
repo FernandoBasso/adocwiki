@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # rubocop: disable Metrics/AbcSize
 
 ##
@@ -29,7 +30,8 @@ class TreeViewHtml
   # @return {String} The navigation ul/li tree structure.
   #
   def to_html(val)
-    return %(<li><a href="/#{val[:path]}.html">#{val[:title]}</a></li>) if val.is_a?(Hash) && val[:path]
+    return %(<li><a href="/#{val[:path]}.html">#{val[:title]}</a></li>) \
+      if val.is_a?(Hash) && val[:path]
 
     acc = ''
 
@@ -39,10 +41,12 @@ class TreeViewHtml
         acc += to_html(v)
         acc += '</ul></li>'
       elsif v.is_a?(Array)
-        acc += %(<li class="category"><button>#{k}</button><ul class="items">)
+        acc += %(<li class="category"><a href="/#{v.first[:path]}">#{k}</a><ul class="items">)
+
         v.each do |v|
           acc += to_html(v)
         end
+
         acc += '</ul></li>'
       else
         acc += "<li>??? #{k}, #{v}</li>"
