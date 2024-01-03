@@ -1,3 +1,10 @@
+#
+# NOTE: rubocop reporter is disabled in .solargraph.yml as I didn't
+# agree with many of the rules in certain contexts. We may enable it
+# in the future and refactor but now the focus is to get the project
+# minimally working.
+#
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 

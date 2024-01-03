@@ -13,7 +13,7 @@ require: []
 domains: []
 
 reporters:
-- rubocop
+# - rubocop
 
 #
 # • https://github.com/castwide/vscode-solargraph/issues/118
