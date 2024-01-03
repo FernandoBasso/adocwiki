@@ -1,7 +1,3 @@
-# frozen_string_literal: true
-
-# rubocop: disable Metrics/AbcSize
-
 ##
 # Generates an HTML navigation of the files in the wiki.
 #
@@ -30,26 +26,28 @@ class TreeViewHtml
   # @return {String} The navigation ul/li tree structure.
   #
   def to_html(val)
-    return %(<li><a href="/#{val[:path]}.html">#{val[:title]}</a></li>) \
-      if val.is_a?(Hash) && val[:path]
+    if val.is_a?(Hash) && val[:path]
+      return %(<li><a href="/#{val[:path]}.html">#{val[:title]}</a></li>)
+    end
 
     acc = ''
 
     val.each_pair do |k, v|
       if v.is_a?(Hash)
-        acc += %(<li class="topcategory"><button>#{k}</button><ul>)
-        acc += to_html(v)
-        acc += '</ul></li>'
+        # acc << %(<li class="topcategory"><button>#{k}</button><ul>)
+        # acc << to_html(v)
+        # acc << '</ul></li>'
+        acc << %(<li class="topcategory"><button>#{k}</button><ul>#{to_html(v)}</li></ul>)
       elsif v.is_a?(Array)
-        acc += %(<li class="category"><a href="/#{v.first[:path]}">#{k}</a><ul class="items">)
+        acc << %(<li class="category"><a href="/#{v.first[:path]}">#{k}</a><ul class="items">)
 
         v.each do |v|
-          acc += to_html(v)
+          acc << to_html(v)
         end
 
-        acc += '</ul></li>'
+        acc << '</ul></li>'
       else
-        acc += "<li>??? #{k}, #{v}</li>"
+        acc << "<li>??? #{k}, #{v}</li>"
       end
     end
 
