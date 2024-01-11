@@ -74,24 +74,45 @@ describe TreeViewHtml do
       expect(dom.css('ul.navtree').size).to eq(1)
       expect(dom.css('ul.navtree > li.category').size).to eq(2)
       expect(
-        dom.css('ul.navtree > li.category > a').first.text
+        dom.css('ul.navtree > li.category > button').first.text
       ).to eq('Command Line')
       expect(
-        dom.css('ul.navtree > li.category > a').last.text
+        dom.css('ul.navtree > li.category > button').last.text
       ).to eq('Editors')
 
       editors = dom.css('ul.navtree > li.category').last
 
-      expect(editors.css('ul.items > li.category > a').text).to eq('Vim')
+      expect(editors.css('ul.items > li.category > button').text).to eq('Vim')
 
       expect(
         editors.css('ul.items > li.category > ul.items > li > a').text
       ).to eq('Getting Started')
+    end
+
+    it 'generates three-level navigation structure' do
+      tree = {
+        'Editors' => [
+          'Vim' => [
+            {
+              path: 'editors/vim/getting-started',
+              title: 'Getting Started',
+              subtitle: nil
+            },
+            'RegExp' => [
+              path: 'editors/vim/regex/intro',
+              title: 'Intro to Vim RegGex',
+              subtitle: nil
+            ]
+          ]
+        ]
+      }
+
+      html = TreeViewHtml.new(tree).nav_html
+      dom = Nokogiri::HTML(html, &:noblanks)
 
       expect(
-        editors.css('ul.items > li.category > ul.items > li > a')
-        .attribute('href').value
-      ).to eq('/editors/vim/getting-started.html')
+        dom.css('ul.items ul.items button').text
+      ).to eq('RegExp')
     end
   end
 end

@@ -1,13 +1,13 @@
 #
-# A navigation with two-level items nesting.
+# A navigation with three-level items nesting.
 #
 
-Command Line:
-  - cmdline/bash.adoc
-  - cmdline/parameter-expansion.adoc
-  - sed:
-    - cmdline/sed/intro.adoc
-    - cmdline/sed/the-s-command.adoc
+# Command Line:
+#   - cmdline/bash.adoc
+#   - cmdline/parameter-expansion.adoc
+#   - sed:
+#     - cmdline/sed/intro.adoc
+#     - cmdline/sed/the-s-command.adoc
 Editors:
   Vim:
     - editors/vim/getting-started.adoc
