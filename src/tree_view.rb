@@ -47,7 +47,7 @@ class TreeView
   # @return {hash}
   #
   def config(file)
-    adoc = Asciidoctor.load_file("#{@docsdir}/#{file}")
+    adoc = Asciidoctor.load_file("#{@docsdir}/docs/#{file}")
 
     {
       path: file.sub(/\.adoc/, ''),
