@@ -1,5 +1,7 @@
 = AdocWiki
 :toc: left
+:icons: font
+:source-highlighter: highlight.js
 
 An AsciiDoc[tor]-powered wiki of sorts.
 
@@ -56,6 +58,46 @@ Or for all spec files:
 [source,shell-session]
 ----
 $ bundle exec rspec -f d ./*.spec.rb
+----
+
+== Assets
+
+[NOTE]
+====
+The commands below is a temporary workaround until a better, more automated approach is implemented.
+====
+
+On every AsciiDoc file, set the `imagesdir` attribute to `__assets` and make sure to create a directory `__assets` as a sibling of the document which will include those assets.
+
+Then include the image like this:
+
+.Example
+[source,asciidoc]
+----
+= Document Title
+:icons: font
+:sectlinks:
+:sectlevels: 6
+:imagesdir: __assets
+
+== Intro
+
+Intro text...
+
+image:my-image.png[Alt text]
+----
+
+After building (converting to HTML) the documents, copy the assets to each sub-directory inside the `build/` directory accordingly (assumes bash >= 4):
+
+
+[source,bash]
+----
+assets_dir=($(find ./docs -type d -name __assets -print))
+
+for asset_dir in "${assets_dir[@]}"
+do
+  cp -rv "$asset_dir" "${asset_dir/docs/build}"
+done
 ----
 
 == Tips
