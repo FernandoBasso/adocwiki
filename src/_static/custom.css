@@ -15,14 +15,16 @@ body {
 }
 
 .outline {
-  position: absolute;
+  position: fixed;
   width: 320px;
   height: 100%;
-  right: -320px;
+  right: 0;
   top: 0;
+  bottom: 0;
   padding: 1.25em 1em;
   background-color: #ffffe3;
   border: 1px solid #e7e7e9;
+  overflow-y: scroll;
 }
 
 .outline > ul {
