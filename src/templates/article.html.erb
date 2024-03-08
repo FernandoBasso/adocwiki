@@ -15,7 +15,7 @@ parts = [*parts, ' :: Dev How To!']
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 
-<link rel="stylesheet" type="text/css" href="/_static/main.css" />
+<%# <link rel="stylesheet" type="text/css" href="/_static/main.css" /> %>
 <link rel="stylesheet" type="text/css" href="/_static/pygments-pastie.css" />
 <link rel="stylesheet" type="text/css" href="/_static/custom.css" />
 
@@ -23,19 +23,39 @@ parts = [*parts, ' :: Dev How To!']
 </head>
 <body class="article with-treeview with-outline">
 
-<div id="toc" class="toc2">
-<%= @nav_html %>
+<nav class="nav-top">
+  <ul>
+    <li>
+      <a href="/">Dev How To</a>
+    </li>
+    <li>
+      <a href="/about">About</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="content-wrapper">
+  <section class="content-layout">
+    <nav class="nav-tree">
+    <%= @nav_html %>
+    </nav>
+
+    <div class="content-body">
+      <main>
+        <h1><%= adoc.title %></h1>
+        <%= adoc.content %>
+      </main>
+
+      <nav class="nav-outline">
+        <%= outline %>
+      </nav>
+    </div>
+  </section>
 </div>
 
-<div id="content">
-  <h1><%= adoc.title %></h1>
-
-  <%= adoc.content %>
-
-  <div id="outline" class="outline">
-    <%= outline %>
-  </div>
-</div>
+<footer class="footer">
+  <p>Dev How To &amp; Friends 2024</p>
+</footer>
 
 <% if adoc.attributes['stem'] %>
 <script type="text/x-mathjax-config">
