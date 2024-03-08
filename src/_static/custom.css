@@ -1,8 +1,20 @@
+:root {
+  --font-size-tree-view: 15px;
+  --font-size-outline: var(--font-size-tree-view);
+  --bg: #fcf3d9;
+  --bg-yellow-1: #fffff4;
+  --bg-yellow-2: #ffffc7;
+  --bg-code-block: #fffcf3;
+  --border-color-code-block: #efd791;
+  --bg-code-inline: var(--bg-code-block);
+  --border-color-code-inline: var(--border-color-code-block);
+}
+
 body {
   margin: 0;
   padding: 0;
-  background-color: #fffff4;
   font-family: "Open Sans", "DejaVu Sans", sans-serif;
+  background-color: var(--bg);
 }
 
 .content-wrapper {
@@ -10,7 +22,7 @@ body {
   flex-direction: row;
   margin-left: auto;
   margin-right: auto;
-  background-color: #ffffc7;
+  background-color: var(--bg);
 }
 
 .nav-top {
@@ -28,6 +40,8 @@ body {
 
 .nav-tree {
   display: block;
+  padding-top: 1em;
+  font-size: var(--font-size-tree-view);
 }
 
 .nav-tree > ul {
@@ -40,7 +54,8 @@ body {
 
 .nav-outline {
   display: block;
-  background-color: #ffffe3;
+  padding-top: 1em;
+  font-size: var(--font-size-outline);
 }
 
 .nav-outline > ul {
@@ -96,11 +111,16 @@ body {
 .listingblock > .content > pre:not(.highlight),
 .listingblock > .content > pre[class="highlight"],
 .listingblock > .content > pre[class^="highlight "] {
-  background-color: #fffff3;
-  border: 2px dashed #eee;
+  background-color: var(--bg-code-block);
+  border: 2px solid var(--border-color-code-block);
 }
 
 kbd {
   font-size: 0.85em;
   padding: 0.1em 0.4em;
+}
+
+:not(pre):not([class^="L"]) > code {
+  background-color: var(--bg-code-inline);
+  border: 1px solid var(--border-color-code-inline);
 }

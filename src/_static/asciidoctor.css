@@ -1,3 +1,9 @@
+/*
+ * Copied from a file generated with the default `asciidoctor` ruby gem
+ * and then prettified a bit. Some styles are overridden in `custom.css`
+ * for now.
+ */
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -420,7 +426,7 @@ small {
 }
 
 code {
-  font-family: "Droid Sans Mono", "DejaVu Sans Mono", monospace;
+  font-family: "Source Code Pro", "Droid Sans Mono", "DejaVu Sans Mono", monospace;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.9);
 }
