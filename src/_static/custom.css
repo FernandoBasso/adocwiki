@@ -8,6 +8,7 @@
   --border-color-code-block: #efd791;
   --bg-code-inline: var(--bg-code-block);
   --border-color-code-inline: var(--border-color-code-block);
+  --bg-nav-top: #ba3925;
 }
 
 body {
@@ -27,7 +28,7 @@ body {
 
 .nav-top {
   height: 64px;
-  background-color: orangered;
+  background-color: var(--bg-nav-top);
 }
 
 .nav-top ul {
@@ -36,6 +37,18 @@ body {
   padding: 1em 2em;
   margin: 0;
   list-style: none;
+}
+
+.nav-top a {
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+}
+
+.nav-top a:hover {
+  /* text-decoration: underline; */
+  text-shadow: none;
 }
 
 .nav-tree {
@@ -64,6 +77,16 @@ body {
   position: sticky;
   top: 0;
   overflow-y: scroll;
+}
+
+.nav-tree ul,
+.nav-outline ul {
+  list-style: none;
+}
+
+.nav-tree a,
+.nav-outline a {
+  text-decoration: none;
 }
 
 .content-layout {
