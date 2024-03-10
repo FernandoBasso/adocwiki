@@ -9,6 +9,7 @@
   --bg-code-inline: var(--bg-code-block);
   --border-color-code-inline: var(--border-color-code-block);
   --bg-nav-top: #ba3925;
+  --bg-footer: #ffefc4;
 }
 
 body {
@@ -126,6 +127,21 @@ body {
 }
 
 .outline a {
+  text-decoration: none;
+}
+
+.footer {
+  text-align: center;
+  padding: 1em;
+  background-color: var(--bg-footer);
+  border-top: 1px solid var(--bg-nav-top);
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer a {
   text-decoration: none;
 }
 
