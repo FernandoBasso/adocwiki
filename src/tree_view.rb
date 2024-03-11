@@ -4,7 +4,6 @@ require 'yaml'
 require 'pathname'
 require 'asciidoctor'
 require 'awesome_print'
-require 'htmlbeautifier'
 
 def _ap(acc)
   ap acc, indent: -2
