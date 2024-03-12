@@ -1,0 +1,11 @@
+/*
+ * CSS for collapsible nav tree elements.
+ */
+
+.category.active .items {
+  display: block;
+}
+
+.category .items {
+  display: none;
+}
