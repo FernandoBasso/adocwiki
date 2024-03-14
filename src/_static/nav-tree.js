@@ -30,6 +30,8 @@
 
     const activeHref = document.querySelectorAll(`.nav-tree li a[href="${currentPage}"]`)[0];
 
+    activeHref.classList.add('current');
+
     var activeCategory = activeHref.closest('.category');
 
     activate(activeCategory);

@@ -34,9 +34,9 @@ class TreeViewHtml
 
     val.each_pair do |k, v|
       if v.is_a?(Hash)
-        acc << %(<li class="topcategory"><button>#{k}</button><ul>#{to_html(v)}</li></ul>)
+        acc << %(<li class="category"><button><img src="/_static/caret.svg" alt="open close arrow" />#{k}</button><ul>#{to_html(v)}</li></ul>)
       elsif v.is_a?(Array)
-        acc << %(<li class="category"><button>#{k}</button><ul class="items">)
+        acc << %(<li class="category"><button><img src="/_static/caret.svg" alt="open close arrow" />#{k}</button><ul class="items">)
 
         v.each do |v|
           acc << to_html(v)

@@ -2,10 +2,47 @@
  * CSS for collapsible nav tree elements.
  */
 
+.category {
+
+}
+.category button {
+  width: 100%;
+  padding: 0;
+  text-align: left;
+  border: none;
+  background-color: transparent;
+}
+
+.category img {
+  width: 0.7em;
+  margin-right: 0.3em;
+}
+
+.category.active img {
+  transform: rotate(90deg);
+}
+
+.category .current {
+  font-weight: 700;
+}
+
+.category .items {
+  margin: 0;
+  padding-left: 2em;
+}
+
 .category.active .items {
   display: block;
 }
 
 .category .items {
   display: none;
+}
+
+.items a {
+  color: #000;
+}
+
+.items a:hover {
+  text-decoration: underline;
 }
