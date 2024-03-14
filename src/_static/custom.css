@@ -27,6 +27,12 @@ body {
   background-color: var(--bg);
 }
 
+@media (max-width: 960px) {
+  .content-wrapper {
+    padding-top: 64px;
+  }
+}
+
 .nav-top {
   height: 64px;
   background-color: var(--bg-nav-top);
@@ -36,6 +42,10 @@ body {
 
 @media (max-width: 960px) {
   .nav-top {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    right: 0;
     justify-content: space-between;
   }
 }
@@ -85,15 +95,17 @@ body {
 
 .nav-tree {
   display: block;
-  padding-top: 1em;
+  padding: 1em 0;
   font-size: var(--font-size-tree-view);
+  overflow-y: scroll;
 }
 
 @media (max-width: 960px) {
   .nav-tree {
-    position: absolute;
+    position: fixed;
     left: -300px;
-    z-index: 1;
+    height: calc(100vh - 64px);
+    z-index: 2;
     background-color: var(--bg);
     box-shadow: 2px 2px 7px 0 rgba(0, 0, 0, 0.5);
   }
@@ -119,7 +131,7 @@ body {
 
 @media (max-width: 960px) {
   .nav-outline {
-    position: absolute;
+    position: fixed;
     right: -300px;
     z-index: 1;
     background-color: var(--bg);
