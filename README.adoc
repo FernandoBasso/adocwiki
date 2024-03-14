@@ -117,3 +117,10 @@ $ find test-data -name '*.adoc' -exec sed -n 1p {} \;
 = AsciiDoc
 = Arch Linux
 ----
+
+== Credits
+
+Favicon based on this free terminal icon:
+
+* https://icon-library.com/icon/terminal-icon-4.html
+
