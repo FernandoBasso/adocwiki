@@ -30,6 +30,38 @@ body {
 .nav-top {
   height: 64px;
   background-color: var(--bg-nav-top);
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 960px) {
+  .nav-top {
+    justify-content: space-between;
+  }
+}
+
+.nav-top .nav-tree-toggle {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .nav-top .nav-tree-toggle {
+    display: block;
+    background-image: url('/_static/menu.svg');
+    background-size: 50%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 3px;
+    align-self: center;
+    margin-left: 1em;
+  }
+}
+
+.nav-top .nav-tree-toggle.is-active {
+  background-image: url('/_static/back.svg');
 }
 
 .nav-top ul {
@@ -48,7 +80,6 @@ body {
 }
 
 .nav-top a:hover {
-  /* text-decoration: underline; */
   text-shadow: none;
 }
 
@@ -56,6 +87,20 @@ body {
   display: block;
   padding-top: 1em;
   font-size: var(--font-size-tree-view);
+}
+
+@media (max-width: 960px) {
+  .nav-tree {
+    position: absolute;
+    left: -300px;
+    z-index: 1;
+    background-color: var(--bg);
+    box-shadow: 2px 2px 7px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .nav-tree.is-active {
+    left: 0;
+  }
 }
 
 .nav-tree > ul {
@@ -70,6 +115,44 @@ body {
   display: block;
   padding-top: 1em;
   font-size: var(--font-size-outline);
+}
+
+@media (max-width: 960px) {
+  .nav-outline {
+    position: absolute;
+    right: -300px;
+    z-index: 1;
+    background-color: var(--bg);
+    box-shadow: -2px -2px 7px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .nav-outline.is-active {
+    right: 0;
+  }
+}
+
+.nav-top .nav-outline-toggle {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .nav-top .nav-outline-toggle {
+    display: block;
+    background-image: url('/_static/outline.svg');
+    background-size: 50%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 3px;
+    align-self: center;
+    margin-right: 1em;
+  }
+
+  .nav-top .nav-outline-toggle.is-active {
+    background-image: url('/_static/close.svg');
+  }
 }
 
 .nav-outline > ul {
@@ -113,6 +196,16 @@ body {
   max-width: 960px;
   min-width: 0;
   padding: 0 2em;
+}
+
+@media (max-width: 960px) {
+  .content-body {
+    padding: 0;
+  }
+
+  .content-body > main {
+    padding: 0 1em;
+  }
 }
 
 .outline > ul {

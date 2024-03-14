@@ -6,6 +6,8 @@
 
 (function () {
   var log = console.log.bind(console);
+  var qs = document.querySelector.bind(document);
+  var qsa = document.querySelectorAll.bind(document);
 
   var categoryElements = document.querySelectorAll('.category');
 
@@ -63,4 +65,16 @@
       category.classList.add('active');
     }, false);
   });
+
+  qs('.nav-tree-toggle').addEventListener('click', function handleClick(evt) {
+    var btn = evt.currentTarget;
+    btn.classList.toggle('is-active');
+    qs('.nav-tree').classList.toggle('is-active');
+  }, false);
+
+  qs('.nav-outline-toggle').addEventListener('click', function handleClick(evt) {
+    var btn = evt.currentTarget;
+    btn.classList.toggle('is-active');
+    qs('.nav-outline').classList.toggle('is-active');
+  }, false);
 }());

@@ -124,3 +124,10 @@ Favicon based on this free terminal icon:
 
 * https://icon-library.com/icon/terminal-icon-4.html
 
+Hamburger outline menu icon:
+
+* https://icons8.com/icons/set/menu
+
+Close icon:
+
+* https://icons8.com/icons/set/close
