@@ -69,12 +69,17 @@
   qs('.nav-tree-toggle').addEventListener('click', function handleClick(evt) {
     var btn = evt.currentTarget;
     btn.classList.toggle('is-active');
-    qs('.nav-tree').classList.toggle('is-active');
+    qs('.sidebar').classList.toggle('is-active');
   }, false);
 
   qs('.nav-outline-toggle').addEventListener('click', function handleClick(evt) {
     var btn = evt.currentTarget;
     btn.classList.toggle('is-active');
     qs('.nav-outline').classList.toggle('is-active');
+  }, false);
+
+  qs('.nav-outline').addEventListener('click', function handleClickOutline(evt) {
+    qs('.nav-outline').classList.remove('is-active');
+    qs('.nav-outline-toggle').classList.remove('is-active');
   }, false);
 }());

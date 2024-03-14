@@ -37,15 +37,55 @@ parts = [*parts, ' :: Dev How To!']
 </nav>
 
 <div class="content-wrapper">
-  <section class="content-layout">
-    <nav class="nav-tree">
-    <%= @nav_html %>
-    </nav>
+  <aside class="sidebar">
+    <div class="container">
+      <div class="sticky">
+        <div class="brand">
+          <a href="/">
+            <img src="/_static/brand-dev-how-to.png" alt="Dev How To Terminal Icon" />
+            <h2 class="brand-heading">Dev How To</h2>
+          </a>
+        </div>
+        <nav class="nav-tree">
+          <%= @nav_html %>
+        </nav>
+      </div>
+    </div>
+  </aside>
 
+  <section class="content-layout">
     <div class="content-body">
       <main>
         <h1><%= adoc.title %></h1>
         <%= adoc.content %>
+
+        <footer class="footer">
+          <p>Dev How To</p>
+          <p>
+            Text licensed under
+            <a
+              href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+              target="_blank"
+            >
+              CC BY-NC-SA 4.0
+            </a>.
+            Source code licensed under
+            <a
+              href="https://www.gnu.org/licenses/gpl-3.0.en.html"
+              target="_blank"
+            >
+              GPLv3
+            </a>.
+          </p>
+          <p>
+            <a
+              href="https://gitlab.com/devhowto/devhowto.gitlab.io"
+              target="_blank"
+            >
+              Dev How To Gitlab repository
+            </a>
+          </p>
+        </footer>
       </main>
 
       <nav class="nav-outline">
@@ -54,34 +94,6 @@ parts = [*parts, ' :: Dev How To!']
     </div>
   </section>
 </div>
-
-<footer class="footer">
-  <p>Dev How To</p>
-  <p>
-    Text licensed under
-    <a
-      href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-      target="_blank"
-    >
-      CC BY-NC-SA 4.0
-    </a>.
-    Source code licensed under
-    <a
-      href="https://www.gnu.org/licenses/gpl-3.0.en.html"
-      target="_blank"
-    >
-      GPLv3
-    </a>.
-  </p>
-  <p>
-    <a
-      href="https://gitlab.com/devhowto/devhowto.gitlab.io"
-      target="_blank"
-    >
-      Dev How To Gitlab repository
-    </a>
-  </p>
-</footer>
 
 <% if adoc.attributes['stem'] %>
 <script type="text/x-mathjax-config">
