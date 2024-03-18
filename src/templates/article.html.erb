@@ -19,7 +19,7 @@ parts = [adoc.doctitle]
 #
 if adoc.doctitle != 'Dev How To'
   subtitle = adoc.attributes['page-subtitle']
-  parts = [*parts, subttitle.nil? ? '' : " :: #{subtitle}"]
+  parts = [*parts, subtitle.nil? ? '' : " :: #{subtitle}"]
   parts = [*parts, ' :: Dev How To']
 end
 
