@@ -8,10 +8,31 @@
 <link rel="shortcut icon" href="/_static/favicon.png" />
 
 <%
-subt = adoc.attributes['page-subtitle']
+##
+# Store the main document/page title.
+#
 parts = [adoc.doctitle]
-parts = [*parts, subt.nil? ? '' : " :: #{subt}"]
-parts = [*parts, ' :: Dev How To!']
+
+##
+# If it is not the home page, then try add subtitle as well and
+# then append the 'Dev How To' to the title.
+#
+if adoc.doctitle != 'Dev How To'
+  subtitle = adoc.attributes['page-subtitle']
+  parts = [*parts, subttitle.nil? ? '' : " :: #{subtitle}"]
+  parts = [*parts, ' :: Dev How To']
+end
+
+#
+# The title of the page will either be simply
+#
+#   <title>Dev How To</title>
+#
+# Or something like:
+#
+#   <title>Brace Expansion :: Bash :: Dev How To</title>
+#
+
 %>
 <title><%= parts.join '' %></title>
 

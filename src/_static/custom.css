@@ -256,6 +256,8 @@ body {
 }
 
 .content-body > main {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 960px;
   min-width: 0;
@@ -270,6 +272,15 @@ body {
   .content-body > main {
     padding: 0 1em;
   }
+}
+
+.content-body .footer {
+  /*
+   * With flex container, this rule makes the footer to stick
+   * to the bottom of the page if there is not enough content
+   * to push it down.
+   */
+  margin-top: auto;
 }
 
 .outline > ul {
