@@ -160,7 +160,7 @@ body {
 
 .nav-tree > ul {
   width: 270px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .nav-tree li:hover {
@@ -216,7 +216,7 @@ body {
   height: 100vh;
   position: sticky;
   top: 0;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .nav-tree ul,
