@@ -1,0 +1,67 @@
+= Internal References and URLs
+:page-subtitle: AdocWiki
+:page-tags: link url xref
+:favicon: https://fernandobasso.dev/cmdline.png
+:icons: font
+:sectlinks:
+:sectnums!:
+:toclevels: 6
+:toc: left
+:source-highlighter: highlight.js
+:stem: latexmath
+:experimental:
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+== xref for inter-document references
+
+[TIP]
+====
+“Inter-document references” are links to other documents inside the project.
+====
+
+To reference internal documents, use the `.adoc` extension while autorhing the text.
+This way, one can easily navigate to the referenced files using the availabled editor features (see the tip below).
+Still, when the documents are converted to HTML pages, AdocWiki (through Asciidoctor) will output HTML links with the `.html` extension, so those documents are correctly navigable from a web browser.
+Example:
+
+.A document referencing another document
+[source,asciidoc]
+----
+Jump to the xref:../intro.adoc[Intro] page.
+----
+
+And it will result in HTML similar to this:
+
+.Resulting HTML from the previous AsciiDoc example
+[source,html]
+----
+<p>
+  Jump to the <a href="../intro.html" >Intro</a> page.
+</p>
+----
+
+Note how the ``a``'s `href` attribute value ends with `.html`, thus allowing proper navigation between pages.
+
+Read more on the official Asciidoctor docs:
+
+* https://docs.asciidoctor.org/asciidoc/latest/macros/xref/
+* https://docs.asciidoctor.org/asciidoc/latest/macros/inter-document-xref
+
+[TIP]
+.Navigate to the file under cursor in Vim & Emacs
+====
+* Vim: kbd:[g f]
+* Emacs: kbd:[M-x find-file-at-point RET]
+====
+
+== link for external references
+
+To link external pages or other things, follow the official Asciidoctor docs:
+
+* https://docs.asciidoctor.org/asciidoc/latest/macros/links/
