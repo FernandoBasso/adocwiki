@@ -51,7 +51,9 @@ class TreeView
     {
       path: file.sub(/\.adoc/, ''),
       title: adoc.title,
-      subtitle: adoc.attributes['page-subtitle']
+      page_subject: adoc.attributes['page-subject'],
+      page_description: adoc.attributes['page-description'],
+      short_title: adoc.attributes['short-title'],
     }
   end
 

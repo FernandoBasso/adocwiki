@@ -18,9 +18,14 @@ parts = [adoc.doctitle]
 # then append the 'Dev How To' to the title.
 #
 if adoc.doctitle != 'Dev How To'
-  subtitle = adoc.attributes['page-subtitle']
-  parts = [*parts, subtitle.nil? ? '' : " :: #{subtitle}"]
-  parts = [*parts, ' :: Dev How To']
+  page_subject = adoc.attributes['page-subject']
+  page_title = adoc.attributes['page-title']
+
+  if not page_title.nil?
+    parts = [page_title, page_subject.nil? ? '' : " :: #{page_subject}", ' :: Dev How To']
+  end
+
+  [*parts, page_subject.nil? ? '' : " :: #{page_subject}", ' :: Dev How To']
 end
 
 #

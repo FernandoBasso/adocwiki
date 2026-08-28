@@ -27,7 +27,8 @@ class TreeViewHtml
   #
   def to_html(val)
     if val.is_a?(Hash) && val[:path]
-      return %(<li><a href="/#{val[:path]}.html">#{val[:title]}</a></li>)
+      title = val[:short_title] || val[:title]
+      return %(<li><a href="/#{val[:path]}.html">#{title}</a></li>)
     end
 
     acc = ''

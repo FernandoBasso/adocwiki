@@ -70,6 +70,8 @@ class AdocWiki
       'sectlevels' => 6,
       'icons' => 'font',
     })
+    ##
+    # Used inside templates/article.html.erb.
     outline = (Asciidoctor::Converter.create('html5')).convert_outline(adoc, toclevels: 6)
 
     rhtml = ERB.new(
@@ -82,7 +84,10 @@ class AdocWiki
     ##
     # `adoc` variable will be available inside the template as `adoc`
     #
-    html_page = rhtml.result(binding)
+    html_page = rhtml.result_with_hash(
+      adoc: adoc,
+      outline: outline,
+    )
 
     File.write(
       "#{@dir_root}/build/#{file.dirname.to_path}/#{file.basename.to_path.gsub(/adoc$/, 'html')}",
