@@ -87,6 +87,7 @@ class AdocWiki
     html_page = rhtml.result_with_hash(
       adoc: adoc,
       outline: outline,
+      nav_html: @nav_html,
     )
 
     File.write(
