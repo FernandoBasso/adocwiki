@@ -7,6 +7,7 @@ require 'erb'
 require 'asciidoctor'
 require_relative 'tree_view'
 require_relative 'tree_view_html'
+require_relative 'html_render_context'
 
 require 'awesome_print'
 
@@ -74,7 +75,7 @@ class AdocWiki
     # Used inside templates/article.html.erb.
     outline = (Asciidoctor::Converter.create('html5')).convert_outline(adoc, toclevels: 6)
 
-    rhtml = ERB.new(
+    template = ERB.new(
       File.read(template_for('article'), mode: 'r:utf-8')
     )
     file = Pathname.new(adoc_file)
@@ -84,11 +85,18 @@ class AdocWiki
     ##
     # `adoc` variable will be available inside the template as `adoc`
     #
-    html_page = rhtml.result_with_hash(
+    # html_page = rhtml.result_with_hash(
+    #   adoc: adoc,
+    #   outline: outline,
+    #   nav_html: @nav_html,
+    # )
+    context = HtmlRenderContext.new({
       adoc: adoc,
       outline: outline,
       nav_html: @nav_html,
-    )
+    })
+
+    html_page = template.result(context.get_binding)
 
     File.write(
       "#{@dir_root}/build/#{file.dirname.to_path}/#{file.basename.to_path.gsub(/adoc$/, 'html')}",

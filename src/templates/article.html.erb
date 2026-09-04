@@ -11,15 +11,15 @@
 ##
 # Store the main document/page title.
 #
-parts = [adoc.doctitle]
+parts = [@data[:adoc].doctitle]
 
 ##
 # If it is not the home page, then try add subtitle as well and
 # then append the 'Dev How To' to the title.
 #
-if adoc.doctitle != 'Dev How To'
-  page_subject = adoc.attributes['page-subject']
-  page_title = adoc.attributes['page-title']
+if @data[:adoc].doctitle != 'Dev How To'
+  page_subject = @data[:adoc].attributes['page-subject']
+  page_title = @data[:adoc].attributes['page-title']
 
   if not page_title.nil?
     parts = [page_title, page_subject.nil? ? '' : " :: #{page_subject}", ' :: Dev How To']
@@ -73,7 +73,7 @@ end
           </a>
         </div>
         <nav class="nav-tree">
-          <%= nav_html %>
+          <%= @data[:nav_html] %>
         </nav>
       </div>
     </div>
@@ -82,8 +82,8 @@ end
   <section class="content-layout">
     <div class="content-body">
       <main>
-        <h1><%= adoc.title %></h1>
-        <%= adoc.content %>
+        <h1><%= @data[:adoc].title %></h1>
+        <%= @data[:adoc].content %>
 
         <footer class="footer">
           <p>Dev How To</p>
@@ -115,13 +115,13 @@ end
       </main>
 
       <nav class="nav-outline">
-        <%= outline %>
+        <%= @data[:outline] %>
       </nav>
     </div>
   </section>
 </div>
 
-<% if adoc.attributes['stem'] %>
+<% if @data[:adoc].attributes['stem'] %>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",
