@@ -8,6 +8,8 @@ GEM
     benchmark (0.5.0)
     commander (5.0.0)
       highline (~> 3.0.0)
+    commonmarker (2.10.0-x86_64-darwin)
+    commonmarker (2.10.0-x86_64-linux)
     date (3.5.1)
     diff-lcs (1.5.0)
     erb (6.0.6)
@@ -123,6 +125,7 @@ GEM
     tilt (2.2.0)
     tsort (0.2.0)
     unicode-display_width (2.4.2)
+    webrick (1.9.2)
     yard (0.9.34)
     yard-activesupport-concern (0.0.1)
       yard (>= 0.8)
@@ -137,11 +140,14 @@ PLATFORMS
 DEPENDENCIES
   asciidoctor
   awesome_print
+  commonmarker (~> 2.10)
   htmlbeautifier
   nokogiri
   pygments.rb
   rspec
   solargraph
+  webrick
+  yard
 
 BUNDLED WITH
   4.0.17
