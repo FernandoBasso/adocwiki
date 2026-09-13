@@ -11,7 +11,14 @@ Even if we change to some other code hosting platform at some point, “work ite
 == Lincense
 
 This project is licensed under GPL-3.0-or-later.
-Any contributions shall follow the same license.
+Any contributions automatically falls under the same license.
+
+During development, add the SPDX identifier on the first line and leave an empty after it on each new source code file.
+
+[source,text]
+----
+# SPDX-License-Identifier: GPL-3.0-or-later
+----
 
 == Naming branches
 
