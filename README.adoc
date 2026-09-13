@@ -5,6 +5,11 @@
 
 An AsciiDoc[tor]-powered wiki of sorts.
 
+== License
+
+This project is licensed under GPL-3.0-or-later.
+See link:LICENSE[LICENSE].
+
 == Local Development
 
 === Dependencies
