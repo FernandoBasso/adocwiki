@@ -8,3 +8,9 @@
 test-data/build
 
 *.drawio.bkp
+
+##
+# Yard.
+#
+.yardoc
+doc
