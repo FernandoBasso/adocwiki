@@ -1,0 +1,34 @@
+= Contributing to AdocWiki
+
+== Intro
+
+[NOTE]
+====
+The project is currently maintained in Gitlab, and we are using the term “work item” to describe bugs, issues, or the concept of “ticket”.
+Even if we change to some other code hosting platform at some point, “work item” seems to be descriptive enough.
+====
+
+== Lincense
+
+This project is licensed under GPL-3.0-or-later.
+Any contributions shall follow the same license.
+
+== Naming branches
+
+Most contributions should come from a work item with a branch named after the work item number followed by some short, concise descriptive name summarised from the item title.
+
+For example, if we have item 5 titled “Refactor navigation tree related code”, then the branch could be something like one of these:
+
+* 5-refactor-tree
+* 5-refactor-nav-code
+* 5-improve-nav-code
+
+We say _most_ contributions because any significan changes or new features should be discussed on a ticket first to avoid misunderstandings or time spent on code that may not be accepted for one reason or another.
+Probably better to have some friendly, collaborative discussion first.
+
+For work that don't have a related work item, simply use a descriptive but concise branch name.
+Examples:
+
+* upgrade-gem-x
+* format-ruby-files
+* improve-feature-x-documentation
