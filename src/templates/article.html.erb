@@ -7,39 +7,7 @@
 <meta name="generator" content="Asciidoctor 2.0.20">
 <link rel="shortcut icon" href="/_static/favicon.png" />
 
-<%
-##
-# Store the main document/page title.
-#
-parts = [@data[:adoc].doctitle]
-
-##
-# If it is not the home page, then try add subtitle as well and
-# then append the 'Dev How To' to the title.
-#
-if @data[:adoc].doctitle != 'Dev How To'
-  page_subject = @data[:adoc].attributes['page-subject']
-  page_title = @data[:adoc].attributes['page-title']
-
-  if not page_title.nil?
-    parts = [page_title, page_subject.nil? ? '' : " :: #{page_subject}", ' :: Dev How To']
-  end
-
-  [*parts, page_subject.nil? ? '' : " :: #{page_subject}", ' :: Dev How To']
-end
-
-#
-# The title of the page will either be simply
-#
-#   <title>Dev How To</title>
-#
-# Or something like:
-#
-#   <title>Brace Expansion :: Bash :: Dev How To</title>
-#
-
-%>
-<title><%= parts.join '' %></title>
+<title><%= title(config: @config, adoc: @adoc) %></title>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 
@@ -73,7 +41,7 @@ end
           </a>
         </div>
         <nav class="nav-tree">
-          <%= @data[:nav_html] %>
+          <%= @side_nav %>
         </nav>
       </div>
     </div>
@@ -82,8 +50,9 @@ end
   <section class="content-layout">
     <div class="content-body">
       <main>
-        <h1><%= @data[:adoc].title %></h1>
-        <%= @data[:adoc].content %>
+        <h1><%= doc_title(adoc: @adoc) %></h1>
+
+        <%= @adoc.content %>
 
         <footer class="footer">
           <p>Dev How To</p>
@@ -115,13 +84,13 @@ end
       </main>
 
       <nav class="nav-outline">
-        <%= @data[:outline] %>
+        <%= @adoc.converter.convert(@adoc, 'outline') %>
       </nav>
     </div>
   </section>
 </div>
 
-<% if @data[:adoc].attributes['stem'] %>
+<% if @adoc.attributes['stem'] %>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",

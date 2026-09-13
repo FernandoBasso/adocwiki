@@ -24,7 +24,7 @@ class AdocWiki
     @dir_root = dir_root
     @nav_items_orig = YAML.load_file("#{@dir_root}/nav.yml")
     @nav_items = TreeView.new(@nav_items_orig, dir_root).nav_items
-    @nav_html = TreeViewHtml.new(@nav_items).nav_html
+    @side_nav = TreeViewHtml.new(@nav_items).nav_html
   end
 
   def build
@@ -60,9 +60,10 @@ class AdocWiki
   end
 
   ##
-  # Converts an Asciidoc file to html and embeds it into the template.
+  # Converts an AsciiDoc file to html and embeds it into the template.
   #
-  # @param {string} adoc_file
+  # `adoc_file`
+  # : A `String` representing the name of the file to be converted.
   #
   def conv(adoc_file)
     adoc = Asciidoctor.load_file("#{@dir_root}/docs/#{adoc_file}", attributes: {
@@ -71,9 +72,10 @@ class AdocWiki
       'sectlevels' => 6,
       'icons' => 'font',
     })
-    ##
-    # Used inside templates/article.html.erb.
-    outline = (Asciidoctor::Converter.create('html5')).convert_outline(adoc, toclevels: 6)
+
+    # adoc.outline =
+    #   Asciidoctor::Converter.create('html5')
+    #   .convert_outline(adoc, toclevels: 6)
 
     template = ERB.new(
       File.read(template_for('article'), mode: 'r:utf-8')
@@ -83,18 +85,14 @@ class AdocWiki
     FileUtils.mkpath("#{@dir_root}/build/#{file.dirname.to_path}")
 
     ##
-    # `adoc` variable will be available inside the template as `adoc`
+    # We'll always provided `adoc`, `outline`, and `nav_html` to the templates,
+    # even if it is an empty AsciiDoc document, or empty outline.
     #
-    # html_page = rhtml.result_with_hash(
-    #   adoc: adoc,
-    #   outline: outline,
-    #   nav_html: @nav_html,
-    # )
-    context = HtmlRenderContext.new({
+    context = HtmlRenderContext.new(
+      config: { 'site-title': 'Dev How To' },
       adoc: adoc,
-      outline: outline,
-      nav_html: @nav_html,
-    })
+      side_nav: @side_nav,
+    )
 
     html_page = template.result(context.get_binding)
 

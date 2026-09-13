@@ -17,46 +17,106 @@ ifdef::env-github[]
 :warning-caption: :warning:
 endif::[]
 
-== Page titles and other attributes
+== Page titles and other related attributes
 
-The `= Title` is used for both the page title shown at the top of the document, as well as the title that goes inside the `<title>` HTML tag and shows in the browser tab.
+This document covers this set of markup, attributes or general site configurations and how they influence the `<title />` and `<h1>` tags and a few related things:
+
+- `site-title`
+- `= Title`
+- `page-title`
+- `page-subject`
+- `doc-title`
+- `doc-nav-title`
+
+=== site-title
+
+`site-title` is defined in `adocwiki.yml` and cannot be overridden from attributes on the `.adoc` files.
+It gets appended to the text that goes inside the `<title />` tag.
+For example, if `site-title` is set to “My Wiki”, we end up with something like this:
+
+[source,html]
+----
+<!--               ----------     -->
+<title>My Tutorial :: My Wiki</title>
+<!--               ----+-----     -->
+<!--                  /           -->
+<!--                 /            -->
+<!--        This is where it      -->
+<!--        gets appended to.     -->
+----
+
+=== = Title
+
+The `= Title` AsciiDoc title markup is used both by the document title that goes inside the `<h1>` heading HTML tag _and_ for the initial title text that goes inside the `<title>` tag.
+We say “initial” because other text gets appended to that title, as explained in other parts of this document.
+
+This example shows what happens when we use `= Title` without `page-title` to override it:
+
+[source,asciidoc]
+----
+= Document Title
+
+Rest of the document.
+----
+
+Renders:
+
+[source,html]
+----
+<title>Document Title :: Site</title>
+...
+<h1>Document Title</h1>
+<p>Rest of the document.</p>
+----
 
 === page-title
 
 The title that shows in the browser URL.
-Defaults to `= Title`.
-It means, it is possible to use `= Title` inside the document, and use `page-title` to override what is used inside `<title>` tag.
+Defaults to the `= Title` from the AsciiDoc document.
+It means it is possible to use `= Title` inside the document which goes into `<h1>`, and use `page-title` to override what is used inside `<title>` tag.
+
+Example when `= Title` is used in combination with `page-title`:
+
+[source,asciidoc]
+----
+= Document Title
+:page-title: My Page Title
+
+Rest of the document.
+----
+
+Renders:
+
+[source,html]
+----
+<title>My Page Title :: Site</title>
+...
+<h1>Document title</h1>
+<p>Rest of the document.</p>
+----
 
 === page-subject
 
 Appended after `= Title` or `page-title` in inside the `<title>` tag of the page.
-It helps users and SEO.
-
-For example, suppose we have a page in `docs/cmdline/intro.adoc`.
-We can have something like this in the file:
+It helps both with users and SEO.
 
 [source,asciidoc]
 ----
-= Bash
-:page-subject: Command Line
+= Document Title
+:page-title: My Page Title
+:page-subject: My Subject
 
-== Getting started
-
-Hello, World!
+Rest of the document.
 ----
 
 It renders as:
 
 [source,html]
 ----
-<head>
-  <title>Bash :: Command Line :: Dev How To</title>
-</head>
-
-<body>
-  <h2>Getting Started</h2>
-  <p>Hello, World!</p>
-</body>
+<title>My Page Title :: My Subject :: Site</title>
+...
+<h1>Document title</h1>
+<p>Rest of the document.</p>
 ----
 
 Or, using `page-subtitle` to override `= Title`:
@@ -86,4 +146,72 @@ Renders as:
 </body>
 ----
 
+=== doc-title
 
+The `doc-title` attribute on can be used to override `= Title` and will be used in the `<h1>` tag of the generated HTML document.
+
+Given this AsciiDoc file:
+
+[source,asciidoc]
+----
+= Title
+:page-subject: Subject
+:doc-title: My Doc Title
+
+Rest of the document.
+----
+
+Will render as:
+
+[source,html]
+----
+<title>Title :: Subject :: Dev How To</title>
+...
+<h1>My Doc Title</h1>
+<p>Rest of the document.</p>
+----
+
+=== doc-nav-title
+
+The `doc-nav-title` attribute can be used to override both `= Title` and `doc-title` as the document title that goes into the navigation sidebar of the website.
+One of its use cases is to have an alternative, maybe shorter title to show on the navigation sidebar, as it is not as wide as the main content where there is more room to show a lenthier title.
+
+Given this AsciiDoc file:
+
+[source,asciidoc]
+----
+= Title
+:doc-title: My Long Doc Title
+:doc-nav-title: Short Title
+
+Rest of the document.
+----
+
+The main content renders as this:
+
+[source,html]
+----
+<title>Title :: Site</title>
+...
+<h1>My Long Doc Title</h1>
+<p>Rest of the document.</p>
+----
+
+And the navigation sidebar as:
+
+[source,html]
+----
+<ul>
+  <li>
+    <a href="...">Short Title</a>
+  </li>
+</ul>
+----
+
+== Navigation sidebar document titles
+
+The document titles that appear on the navigation sidebar are choosen in this order of precedence:
+
+. `doc-nav-title` AsciiDoc document attribute.
+. `doc-title` AsciiDoc document attribute.
+. `= Title` AsciiDoc document title.
