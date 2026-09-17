@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    adocwiki (1)
+    adocwiki (0.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -85,7 +85,7 @@ DEPENDENCIES
   rubocop (~> 1.21)
 
 CHECKSUMS
-  adocwiki (1)
+  adocwiki (0.0.1)
   ast (2.4.3) sha256=954615157c1d6a382bc27d690d973195e79db7f55e9765ac7c481c60bdb4d383
   bundler (4.0.17) sha256=214e21431b5665dd2f99df8a5511c6b151d7a72e8015c8b38f8b775b61cbb6c1
   diff-lcs (1.6.2) sha256=9ae0d2cba7d4df3075fe8cd8602a8604993efc0dfa934cff568969efb1909962
