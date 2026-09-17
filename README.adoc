@@ -1,3 +1,41 @@
 = AdocWiki
 
-A static site generator that loves AsciiDoc.
+== Local development
+
+Install dependencies:
+
+[source,shell-session]
+----
+$ bundle install
+----
+
+Test and lint in separate commands:
+
+[source,shell-session]
+----
+$ bundle exec rake spec
+$ bundle exec rake rubocop
+----
+
+Or test and lint in a single command:
+
+[source,shell-session]
+----
+$ bundle exec rake
+----
+
+Build and install locally:
+
+[source,shell-session]
+----
+$ bundle exec rake build
+$ bundle exec rake install
+----
+
+Now the `adocwiki` command should be available in your shell:
+
+[source,shell-session]
+----
+$ adocwiki --version
+0.0.1
+----
