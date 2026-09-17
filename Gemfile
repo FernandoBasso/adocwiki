@@ -1,8 +1,10 @@
-# frozen_string_literal: true
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 source "https://rubygems.org"
 
+##
 # Specify your gem's dependencies in adocwiki.gemspec
+#
 gemspec
 
 gem "irb"

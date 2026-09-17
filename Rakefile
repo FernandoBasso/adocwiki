@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 require "bundler/gem_tasks"
 require "rspec/core/rake_task"

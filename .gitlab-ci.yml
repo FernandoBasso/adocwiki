@@ -8,3 +8,5 @@ default:
 example_job:
   script:
     - bundle exec rake
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"

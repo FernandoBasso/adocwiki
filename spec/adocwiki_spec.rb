@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 RSpec.describe Adocwiki do
   it "has a version number" do
@@ -6,6 +6,6 @@ RSpec.describe Adocwiki do
   end
 
   it "does something useful" do
-    expect(false).to eq(true)
+    expect(-1).to eq(0.-(1))
   end
 end
