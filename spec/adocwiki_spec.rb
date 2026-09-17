@@ -2,10 +2,6 @@
 
 RSpec.describe Adocwiki do
   it "has a version number" do
-    expect(Adocwiki::VERSION).not_to be nil
-  end
-
-  it "does something useful" do
-    expect(-1).to eq(0.-(1))
+    expect(Adocwiki::VERSION).to match(/\d+\.\d+\.\d+/)
   end
 end

@@ -32,6 +32,15 @@ $ bundle exec rake build
 $ bundle exec rake install
 ----
 
+When you make new changes, uninstall the existing version and install with the new changes:
+
+[source,shell-session]
+----
+$ gem uninstall adocwiki
+$ rake build
+$ rake install
+----
+
 Now the `adocwiki` command should be available in your shell:
 
 [source,shell-session]
