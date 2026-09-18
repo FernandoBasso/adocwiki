@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 require_relative "adocwiki/version"
+require_relative "adocwiki/builder"
 
 module Adocwiki
   class Error < StandardError; end
