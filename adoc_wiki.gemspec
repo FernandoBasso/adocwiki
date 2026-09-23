@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-require_relative "lib/adocwiki/version"
+require_relative "lib/adoc_wiki/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "adocwiki"
-  spec.version = Adocwiki::VERSION
+  spec.name = "adoc_wiki"
+  spec.version = AdocWiki::VERSION
   spec.authors = ["Fernando Basso"]
   spec.email = ["me@fernandobasso.dev"]
 

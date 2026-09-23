@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-module Adocwiki
+module AdocWiki
   VERSION = "0.0.1".freeze
 end

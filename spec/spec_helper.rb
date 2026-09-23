@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-require "adocwiki"
+require "adoc_wiki"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
