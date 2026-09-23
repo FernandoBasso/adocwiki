@@ -6,14 +6,14 @@ module AdocWiki
       @items = YAML.load(side_nav)
     end
 
-    def conv(v)
-      v
-    end
-
     ##
-    # ## Params
+    # ## #walk()
     #
-    # ### items
+    # Navigates the nav items to generate the site file structure.
+    #
+    # ### Params
+    #
+    # #### items
     #
     # `items` is one of:
     #
@@ -26,9 +26,9 @@ module AdocWiki
     # `String`, it is a path to an `.adoc` file to be converted. These are
     # handed over to `#conv()`.
     #
-    # ### Return
+    # #### Return
     #
-    # `nil`
+    # The value returned by `#conv()`.
     #
     def walk(items = @items)
       ##
@@ -61,6 +61,25 @@ module AdocWiki
           end
         end
       end
+    end
+
+    ##
+    # ## #conv()
+    #
+    # Converts a given .adoc file to its final HTML output.
+    #
+    # ### Params
+    # 
+    # #### file
+    #
+    # A `String` indicating an `.adoc` file to be converted.
+    # 
+    # ### Return
+    #
+    # A `String` representing the path of the converted file.
+    #
+    def conv(file)
+      
     end
   end
 end
