@@ -1,19 +1,19 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-require 'spec_helper'
-require 'erb'
+require "spec_helper"
+require "erb"
 
 RSpec.describe AdocWiki::HtmlRenderContext do
-  it 'correct makes context ivars available in the templates' do
+  it "correctly makes context ivars available in the templates" do
     context = AdocWiki::HtmlRenderContext.new(
-      config: { site_title: 'Site' },
+      config: { site_title: "Site" },
       adoc: nil,
-      side_nav: nil,
+      side_nav: nil
     )
     template = "<h1><%= @config[:site_title] %></h1>"
     renderer = ERB.new(template)
     output = renderer.result(context.get_binding)
 
-    expect(output).to eq('<h1>Site</h1>')
+    expect(output).to eq("<h1>Site</h1>")
   end
 end

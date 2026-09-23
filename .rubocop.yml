@@ -1,6 +1,14 @@
 AllCops:
   TargetRubyVersion: 3.2
 
+Metrics/MethodLength:
+  CountComments: false
+  Max: 64
+
+Metrics/BlockLength:
+  CountComments: false
+  Max: 64
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
@@ -9,3 +17,10 @@ Style/StringLiteralsInInterpolation:
 
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
+
+Naming/AccessorMethodName:
+  Exclude:
+    ##
+    # This one is needed due to #get_binding.
+    #
+    - lib/adoc_wiki/html_render_context.rb

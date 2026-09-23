@@ -3,13 +3,13 @@
 require "spec_helper"
 
 RSpec.describe AdocWiki::Builder do
-  describe '#walk()' do
-    it 'walks a one-level sidebar' do
-      side_nav = <<~EOF
+  describe "#walk()" do
+    it "walks a one-level sidebar" do
+      side_nav = <<~ASCIIDOC
         Command Line:
           - cmdline/bash.adoc
           - cmdline/sed.adoc
-      EOF
+      ASCIIDOC
 
       builder = AdocWiki::Builder.new(side_nav:)
 
@@ -21,54 +21,54 @@ RSpec.describe AdocWiki::Builder do
         .and_call_original
 
       expect(builder).to receive(:conv)
-        .with('cmdline/bash.adoc')
+        .with("cmdline/bash.adoc")
         .once
         .and_call_original
 
       expect(builder).to receive(:conv)
-        .with('cmdline/sed.adoc')
+        .with("cmdline/sed.adoc")
         .once
         .and_call_original
 
       builder.walk
     end
 
-    it 'walks a two-level sidebar' do
-      side_nav = <<~EOF
+    it "walks a two-level sidebar" do
+      side_nav = <<~ASCIIDOC
         Command Line:
           - cmdline/bash
           - SED:
             - cmdline/sed/intro.adoc
-      EOF
+      ASCIIDOC
 
       builder = AdocWiki::Builder.new(side_nav:)
 
       expect(builder).to receive(:walk).with(no_args).once.and_call_original
 
       expect(builder).to receive(:walk)
-        .with(['cmdline/bash', {'SED' => ['cmdline/sed/intro.adoc']}])
+        .with(["cmdline/bash", { "SED" => ["cmdline/sed/intro.adoc"] }])
         .once
         .and_call_original
 
       expect(builder).to receive(:conv)
-        .with('cmdline/bash')
+        .with("cmdline/bash")
         .once
 
       expect(builder).to receive(:walk)
-        .with({'SED' => ['cmdline/sed/intro.adoc']})
+        .with({ "SED" => ["cmdline/sed/intro.adoc"] })
         .once
         .and_call_original
 
       expect(builder).to receive(:walk)
-        .with(['cmdline/sed/intro.adoc'])
+        .with(["cmdline/sed/intro.adoc"])
         .once
         .and_call_original
 
       expect(builder).to receive(:conv)
-        .with('cmdline/sed/intro.adoc')
+        .with("cmdline/sed/intro.adoc")
         .once
 
-      builder.walk()
+      builder.walk
     end
   end
 end

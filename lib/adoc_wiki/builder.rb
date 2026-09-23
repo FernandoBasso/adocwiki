@@ -3,6 +3,10 @@
 require "yaml"
 
 module AdocWiki
+  ##
+  # Responsible for walking over the navigation structure to convert
+  # the files to HTML.
+  #
   class Builder
     def initialize(side_nav:)
       @items = YAML.load(side_nav)
@@ -71,17 +75,15 @@ module AdocWiki
     # Converts a given .adoc file to its final HTML output.
     #
     # ### Params
-    # 
+    #
     # #### file
     #
     # A `String` indicating an `.adoc` file to be converted.
-    # 
+    #
     # ### Return
     #
     # A `String` representing the path of the converted file.
     #
-    def conv(file)
-      
-    end
+    def conv(file); end
   end
 end

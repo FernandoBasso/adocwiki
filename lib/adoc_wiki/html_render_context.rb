@@ -1,6 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 module AdocWiki
+  ##
+  # Provides data through ivars that are available in .erb templates.
+  #
   class HtmlRenderContext
     def initialize(
       config:,
