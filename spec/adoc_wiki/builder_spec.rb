@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 require "spec_helper"
 
 RSpec.describe AdocWiki::Builder do
