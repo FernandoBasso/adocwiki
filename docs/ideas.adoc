@@ -1,0 +1,20 @@
+= Ideas
+
+== Code structure
+
+AdocWki reads adocwiki.yml as a file and pass the string to Builder.
+
+Builder gets that string and parses the YAML.
+Extracts the site configs, side_nav, etc.
+
+== adocwiki.yml
+
+Has these top-level keys:
+
+* menu: the “top” menu (home, about, etc.).
+* nav: the “sidebar” items.
+The list of all documents to be converted to generate the wiki/website.
+* site: then title, and other main website metadata.
+* build: then other props regarding build/convertion params.
+
+Not sure yet where to add configs related to allowing users in inject and override CSS and JS.
