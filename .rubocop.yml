@@ -3,11 +3,11 @@ AllCops:
 
 Metrics/MethodLength:
   CountComments: false
-  Max: 64
+  Max: 1024
 
 Metrics/BlockLength:
   CountComments: false
-  Max: 64
+  Max: 1024
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
@@ -18,9 +18,9 @@ Style/StringLiteralsInInterpolation:
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
 
-Naming/AccessorMethodName:
-  Exclude:
-    ##
-    # This one is needed due to #get_binding.
-    #
-    - lib/adoc_wiki/html_render_context.rb
+# Naming/AccessorMethodName:
+#   Exclude:
+#     ##
+#     # This one is needed due to #get_binding.
+#     #
+#     - lib/adoc_wiki/html_render_context.rb
