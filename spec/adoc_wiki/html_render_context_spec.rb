@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-require "spec_helper"
+require_relative "../spec_helper"
 require "erb"
 
 RSpec.describe AdocWiki::HtmlRenderContext do

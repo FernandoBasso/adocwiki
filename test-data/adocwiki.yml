@@ -1,0 +1,15 @@
+site_title: 'Example'
+
+menu:
+  - Home: 'home.adoc'
+  - About: 'about.adoc'
+  - Foo: 'bar.adoc'
+
+nav:
+  Command Line:
+    - cmdline/intro.adoc
+    - SED:
+      - cmdline/sed/getting-started.adoc
+      - cmdline/sed/search-and-replace.adoc
+  Haskell:
+    - cmdline/haskell/lists.adoc

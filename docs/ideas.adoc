@@ -2,9 +2,9 @@
 
 == Code structure
 
-AdocWki reads adocwiki.yml as a file and pass the string to Builder.
+AdocWiki reads `adocwiki.yml` file as a YAML string and passes the string to Builder.
 
-Builder gets that string and parses the YAML.
+Builder gets that string and parses the YAML into a hash.
 Extracts the site configs, side_nav, etc.
 
 == adocwiki.yml
@@ -14,7 +14,12 @@ Has these top-level keys:
 * menu: the “top” menu (home, about, etc.).
 * nav: the “sidebar” items.
 The list of all documents to be converted to generate the wiki/website.
-* site: then title, and other main website metadata.
-* build: then other props regarding build/convertion params.
+* site_title
+* site_description
+* site_<some_platform_or_social_media_config>
+* build config or information
+
+Mostly, only `menu` and `nav` will have nested objects and arrays.
+Feels like having more top-level keys will make things easier in the templates, and we can simulate namespace using the `site_foo_bar` style.
 
 Not sure yet where to add configs related to allowing users in inject and override CSS and JS.

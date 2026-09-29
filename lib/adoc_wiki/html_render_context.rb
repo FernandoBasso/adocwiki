@@ -5,14 +5,9 @@ module AdocWiki
   # Provides data through ivars that are available in .erb templates.
   #
   class HtmlRenderContext
-    def initialize(
-      config:,
-      adoc:,
-      side_nav:
-    )
+    def initialize(config:, adoc:)
       @config = config
       @adoc = adoc
-      @side_nav = side_nav
     end
 
     ##

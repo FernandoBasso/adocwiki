@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<link rel="shortcut icon" href="/_static/favicon.png" />
+
+<title><%= title(config: @config, adoc: @adoc) %></title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+
+<link rel="stylesheet" type="text/css" href="/_static/asciidoctor.css" />
+<link rel="stylesheet" type="text/css" href="/_static/pygments-pastie.css" />
+<link rel="stylesheet" type="text/css" href="/_static/custom.css" />
+<link rel="stylesheet" type="text/css" href="/_static/nav-tree.css" />
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article with-treeview with-outline">
+
+<nav class="nav-top">
+  <button class="nav-tree-toggle"></button>
+  <ul>
+    <li>
+      <a href="/">Dev How To</a>
+    </li>
+  </ul>
+  <button class="nav-outline-toggle"></button>
+</nav>
+
+<div class="content-wrapper">
+  <aside class="sidebar">
+    <div class="container">
+      <div class="sticky">
+        <div class="brand">
+          <a href="/">
+            <img src="/_static/brand-dev-how-to.png" alt="Dev How To Terminal Icon" />
+            <h2 class="brand-heading">Dev How To</h2>
+          </a>
+        </div>
+        <nav class="nav-tree">
+          <%= @side_nav %>
+        </nav>
+      </div>
+    </div>
+  </aside>
+
+  <section class="content-layout">
+    <div class="content-body">
+      <main>
+        <h1><%= doc_title(adoc: @adoc) %></h1>
+
+        <%= @adoc.content %>
+
+        <footer class="footer">
+          <p>Dev How To</p>
+          <p>
+            Text licensed under
+            <a
+              href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+              target="_blank"
+            >
+              CC BY-NC-SA 4.0
+            </a>.
+            Source code licensed under
+            <a
+              href="https://www.gnu.org/licenses/gpl-3.0.en.html"
+              target="_blank"
+            >
+              GPLv3
+            </a>.
+          </p>
+          <p>
+            <a
+              href="https://gitlab.com/devhowto/devhowto.gitlab.io"
+              target="_blank"
+            >
+              Dev How To Gitlab repository
+            </a>
+          </p>
+        </footer>
+      </main>
+
+      <nav class="nav-outline">
+        <%= @adoc.converter.convert(@adoc, 'outline') %>
+      </nav>
+    </div>
+  </section>
+</div>
+
+<% if @adoc.attributes['stem'] %>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<% end %>
+
+<script type="text/javascript" src="/_static/nav-tree.js"></script>
+</body>
+</html>

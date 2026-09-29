@@ -1,7 +1,0 @@
-#
-# A navigation with single-level items nesting.
-#
-
-Command Line:
-  - cmdline/bash.adoc
-  - cmdline/sed.adoc
