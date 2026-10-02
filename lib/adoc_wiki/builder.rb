@@ -154,5 +154,29 @@ module AdocWiki
 
       html_path
     end
+
+    private
+
+    ##
+    # Get the template for the given type.
+    #
+    # ## Params
+    #
+    # ### type
+    #
+    # A `String` representing the type of template. Valid types are:
+    #
+    # - `article`, the only valid one so far.
+    # - `post` (not implemented yet).
+    #
+    # ### Return
+    #
+    # An `ERB` object containing the template for the `type`.
+    #
+    def template_for(type)
+      ERB.new(
+        File.read("#{__dir__}/../templates/#{type}.html.erb", mode: "r:utf-8")
+      )
+    end
   end
 end
